@@ -4,13 +4,17 @@
             <div class="layui-card">
 
                 <div class="layui-card-body">
-                    <blockquote class="layui-elem-quote layui-text"> 路由设置 </blockquote>
+                    <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
 
                     <div class="layui-card-header">
                         <div class="self-card-header">
-                            <a href="#/router/create" class="layui-btn layui-btn-sm">
+                            <a href="#/aoogi/router/create" class="layui-btn layui-btn-sm">
                                 <i class="layui-icon">&#xe654;</i>
                                 <span>新增</span>
+                            </a>
+                            <a href="#/aoogi/router/create_modular" class="layui-btn layui-btn-sm">
+                                <i class="layui-icon">&#xe654;</i>
+                                <span>模块化新增</span>
                             </a>
                         </div>
                         <div class="self-search">
@@ -51,11 +55,15 @@
 <script>
     layui.config({
         base: '/static/admin/js/'
-    }).use(['jquery', 'table', 'form'], function () {
+    }).use(['jquery', 'table', 'form', 'route'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
             table = layui.table,
+            route = layui.route,
             form = layui.form;
+
+        //设置nav标题
+        $("#navTitle").text(route.getRoute().name);
 
         //表格数据获取及定义
         var tableLoad = table.render({
@@ -64,7 +72,7 @@
             limits:[10,20],
             elem: '#tableHash',
             height: 'full-235',
-            url: '/router/data', //数据接口
+            url: '/aoogi/router/data', //数据接口
             page: true, //开启分页
             cols: [
                 [ //表头
@@ -94,8 +102,8 @@
         //监听状态开关
         form.on('switch(switchStatus)', function(data) {
             var status = this.checked ? 1 : 0 ;
-            $.post("router/status",{"id":data.value,"status":status},function(res){
-                layer.msg(res.data);
+            $.post("/aoogi/router/status",{"id":data.value,"status":status},function(res){
+                layer.msg(res.msg);
                 tableLoad.reload();
             });
         });
@@ -103,13 +111,13 @@
         //操作栏监听
         table.on('tool(tIndex)',function(obj){
             if(obj.event === 'detail'){
-                window.location.href ='#/router/'+obj.data.id;
+                window.location.href ='#/aoogi/router/read/'+obj.data.id;
             }else if(obj.event === 'edit'){
-                window.location.href ='#/router/edit/'+obj.data.id;
+                window.location.href ='#/aoogi/router/edit/'+obj.data.id;
             }else if(obj.event === 'del'){
                 layer.confirm('确定删除该条路由?', {icon: 3, title:'提示'}, function(index){
-                    $.post('/router/'+obj.data.id,{'_method':'DELETE'},function(res){
-                        layer.msg(res.data);
+                    $.post('/aoogi/router/'+obj.data.id,{'_method':'DELETE'},function(res){
+                        layer.msg(res.msg);
                         table.reload('tableHash');
                     });
                     layer.close(index);

@@ -4,7 +4,7 @@
             <div class="layui-card">
                 <div class="layui-card-body">
 
-                    <blockquote class="layui-elem-quote layui-text"> 新增配置参数 </blockquote>
+                    <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
                     <div class="layui-card-header">
                         <a href="javascript:history.go(-2);" class="layui-btn layui-btn-sm">
                             <i class="layui-icon">&#xe65a;</i>
@@ -46,10 +46,14 @@
 
 
 <script>
-  layui.use(['form', 'layedit', 'laydate'], function() {
+  layui.use(['form', 'layedit', 'laydate','route'], function() {
     var $ = layui.jquery,
         form = layui.form,
+        route = layui.route,
         layer = layui.layer;
+
+    //设置nav标题
+    $("#navTitle").text(route.getRoute().name);
 
     form.render();
 
@@ -64,11 +68,10 @@
 
     //监听提交
     form.on('submit(form_submit)', function(data) {
-        $.post("/config",data.field,function(res){
-            layer.msg(res.data);
-            if(res.code === 1){
+        $.post("/aoogi/config",data.field,function(res){
+            layer.msg(res.msg);
+            if(res.url != "")
                 window.location.href="#"+res.url;
-            }
         });
         return false;
     });

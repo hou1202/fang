@@ -23,7 +23,11 @@ class Router extends CommonValidate
         'pid|父级ID' => 'number|length:1,11',
         'open|是否展开' => 'in:0,1',
         'main|是否主目录' => 'in:0,1',
-        'status|路由状态' =>'in:0,1'
+        'status|路由状态' =>'in:0,1',
+        'opts|是否配置项路由' =>'in:0,1',
+        'modular|模块名称' =>'/(^[a-zA-Z])\w*/',
+        'type|模块类型' =>'require|array',
+
     ];
     
     /**
@@ -43,7 +47,10 @@ class Router extends CommonValidate
         'open.in' => '主目录是否展开信息有误',
         'main.in' => '是否为主目录信息有误',
         'status.in' => '路由状态信息有误',
+        'opts.in' => '是否配置项路由信息有误',
         'icon' => '路由图标格式错误，例：#xe67a;',
+        'modular' => '模块名称错误，例：admin;',
+        'type' => '模块类型错误',
     ];
 
     /*
@@ -52,6 +59,7 @@ class Router extends CommonValidate
      * */
     protected $scene = [
         'status' => ['id','status'],
-        'save' => ['title','router','menu','path','icon','pid','open','main','status']
+        'save' => ['title','router','menu','path','icon','pid','open','main','status','opts'],
+        'modular' => ['title','modular','type']
     ];
 }

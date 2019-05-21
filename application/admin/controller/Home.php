@@ -21,10 +21,10 @@ use app\admin\common\User;
 class Home extends AdminController
 {
 
-   //主体框架加载信息
+    //主体框架加载信息
     public function home()
     {
-        if(!$admin = User::user()) return redirect(Request::domain().'/login');
+        if(!$admin = User::user()) return redirect(Request::domain().'/adminLogin');
         $info = \app\admin\model\Config::field('param')->where('id','in',[1,2])->select();
         $this->assign('Info',$info);
         $this->assign('User',$admin);
@@ -41,7 +41,7 @@ class Home extends AdminController
     {
         User::logout();
         Auth::authOut();
-        return $this ->returnJson('退出成功',1,Request::domain().'/login');
+        return $this ->successJson('退出成功',Request::domain().'/adminLogin');
 
     }
 
@@ -50,10 +50,10 @@ class Home extends AdminController
         $user = User::user();
         //系统默认管理员获取全部菜单
         if($user['account'] === Config::get('default_admin')){
-            $res = Router::where('status',1)->all();
+            $res = Router::where('status',1)->where('main',1)->all();
         }else{
             $roles = Auth::getGroups();
-            $res = Router::where('id','in',$roles)->where('status',1)->select();
+            $res = Router::where('id','in',$roles)->where('status',1)->where('main',1)->select();
         };
         $xml = array();
         foreach($res as $router){
@@ -72,17 +72,16 @@ class Home extends AdminController
                     }
                 }
                 $xml[] = [
-                        'id'=>$router['id'],
-                        'title'=>$router['title'],
-                        'path'=>$router['menu'] ? '#'.$router['menu'] : '',
-                        'icon'=>'&'.$router['icon'],
-                        'pid'=>$router['pid'],
-                        'open'=>$router['open'] == 1 ? true : false,
-                        'children'=>$children,
-                    ];
+                    'id'=>$router['id'],
+                    'title'=>$router['title'],
+                    'path'=>$router['menu'] ? '#'.$router['menu'] : '',
+                    'icon'=>'&'.$router['icon'],
+                    'pid'=>$router['pid'],
+                    'open'=>$router['open'] == 1 ? true : false,
+                    'children'=>$children,
+                ];
             }
         }
-
 
         return json($xml);
 
@@ -91,7 +90,7 @@ class Home extends AdminController
     //路由配置项菜单
     public function opts()
     {
-        $res = Router::where('status',1)->select();
+        $res = Router::where('status',1)->where('opts',1)->select();
         $xml = [];
         foreach($res as $router){
             /*if($router['pid'] == 0){
