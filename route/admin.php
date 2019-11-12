@@ -21,7 +21,7 @@
 ]);*/
 
 
-Route::get('/','admin/login/index');
+Route::get('login','admin/login/index');
 
 //后台管理模块路由-admin
 
