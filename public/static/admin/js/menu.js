@@ -178,7 +178,8 @@ layui.define(['jquery', 'utils', 'axios'], function(exports) { //提示：模块
       var that = this;
       var curr = [];
       _.forEach(datas, function(item, index) {
-        if (item.pid === pid)
+        //if (item.pid === pid)   //默认数据库中取出来的数据为字符，这里定义的PID为数字，所以不可以用“===”
+        if (item.pid == pid)
           curr.push(item);
       });
       if (curr.length > 0) {
