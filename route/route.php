@@ -26,6 +26,7 @@ Route::pattern([
  * 前端路由处理模块
  *
  * */
+Route::get('/','admin/login/index');
 
 //获取验证码处理
 Route::post('/getCode/:mobile/:type/[:over]','index/Verify/getCode');
