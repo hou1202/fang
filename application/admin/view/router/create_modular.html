@@ -103,9 +103,9 @@
     form.on('submit(form_submit)', function(data) {
         $.post("/aoogi/router/save_modular",data.field,function(res){
             layer.msg(res.msg);
-            /*if(res.code === 1){
+            if(res.code === 1){
                 window.location.href="#"+res.url;
-            }*/
+            }
         });
         return false;
     });
