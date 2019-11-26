@@ -20,8 +20,8 @@
             var $fileInputId = $fileInput.attr('id');
 
             //组装参数;
-            //input 名
-            if( opt.custom ) {
+
+            if( opt.custom ) {      //自定义参数项
                 var custom = opt.custom;
                 delete opt.custom;
             }
@@ -67,12 +67,18 @@
                 return false;
             }
 
+            //重置队列事件，单张图片上传，加入队列前重置队列
+            webUploader.on('beforeFileQueued',function(file){
+                if(custom.single){
+                    webUploader.reset();
+                }
+            });
+
             //绑定文件加入队列事件;
             webUploader.on('fileQueued', function( file ) {
-                if($fileInput.parents(".upload-ul").children('li').length == webUploader.options.fileNumLimit){
-                    $fileInput.parent(".upload-pick").hide();
+                if(!custom.single){
+                    createBox( $fileInput, file, custom.inputId, webUploader);
                 }
-                createBox( $fileInput, file ,webUploader);
 
             });
 
@@ -86,11 +92,11 @@
 
             });
 
-
             //全部上传结束后触发;
             webUploader.on('uploadFinished', function(){
                 $fileInput.next('.parentFileBox').children('.diyButton').remove();
             });
+
             //绑定发送至服务端返回后触发事件;
             webUploader.on('uploadAccept', function( object ,data ){
 
@@ -100,6 +106,16 @@
 
             //上传成功后触发事件;
             webUploader.on('uploadSuccess',function( file,response ){
+
+                if(custom.single){
+                    var removeId = custom.inputId;
+                    //取消废弃容器
+                    //$(".uploadList").remove();
+                    $('.'+custom.inputId+'').remove();
+
+                    //创建新容器
+                    createBox( $fileInput, file ,custom.inputId, webUploader);
+                }
                 var $fileBox = $('#fileBox_'+file.id);
                 var $diyBar = $fileBox.find('.diyBar');
                 $fileBox.removeClass('diyUploadHover');
@@ -235,25 +251,31 @@
     }
 
     //创建文件操作div;
-    function createBox( $fileInput, file, webUploader ) {
+    function createBox( $fileInput, file, singleId='imgId', webUploader ) {
         var file_id = file.id;
+        var single_id = singleId
         var $parentFileBox = $fileInput.parents(".upload-ul");
         var file_len=$parentFileBox.children(".diyUploadHover").length;
 
         //添加子容器;
-        var li = '<li id="fileBox_'+file_id+'" class="diyUploadHover"> \
+        var li = '<li id="fileBox_'+file_id+'" class="delUploadLi diyUploadHover '+single_id+'"> \
 					<div class="viewThumb">\
 					    <input type="hidden">\
 					    <div class="diyBar"> \
 							<div class="diyProgress" style="width:100% !important;">0%</div> \
 					    </div> \
 					    <p class="diyControl">\
-                            <span class="diyLeft"><i></i></span>\
                             <span class="diyCancel"><i></i></span>\
-                            <span class="diyRight"><i></i></span>\
 					    </p>\
 					</div> \
 				</li>';
+
+        /**原diyControl下SPAN列表
+         *
+         <span class="diyLeft"><i></i></span>
+         <span class="diyCancel"><i></i></span>
+         <span class="diyRight"><i></i></span>
+         */
 
         $parentFileBox.prepend( li );
 
@@ -261,7 +283,8 @@
 
         //绑定取消事件;
         $fileBox.find('.diyCancel').one('click',function(){
-            removeLi( $(this).parents('.diyUploadHover'), file_id, webUploader );
+            //removeLi( $(this).parents('.diyUploadHover'), file_id, webUploader );
+            removeLi( $(this).parents('.delUploadLi'), file_id, webUploader );
         });
 
         //绑定左移事件;

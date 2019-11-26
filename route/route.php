@@ -28,6 +28,11 @@ Route::pattern([
  * */
 Route::get('/','admin/login/index');
 
+
+
+
+//miss路由：没有匹配路由时执行
+//Route::miss('/');
 //获取验证码处理
 Route::post('/getCode/:mobile/:type/[:over]','index/Verify/getCode');
 //图片上传处理
