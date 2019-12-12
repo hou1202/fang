@@ -26,7 +26,17 @@ Route::pattern([
  * 前端路由处理模块
  *
  * */
-Route::get('/','admin/login/index');
+Route::get('/','index/index/index');
+Route::get('/home','index/index/home');
+Route::get('/about','index/index/about');
+Route::get('/service','index/index/service');
+Route::get('/service-detail','index/index/serviceDetail');
+Route::get('/project','index/index/project');
+Route::get('/project-detail','index/index/projectDetail');
+Route::get('/blog','index/index/blog');
+Route::get('/blog-detail','index/index/blogDetail');
+Route::get('/contact','index/index/contact');
+
 
 
 

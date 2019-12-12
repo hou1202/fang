@@ -1,0 +1,314 @@
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+
+                    <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
+                    <div class="layui-card-header">
+                        <a href="javascript:history.go(-2);" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe65a;</i>
+                            <span>返回</span>
+                        </a>
+                    </div>
+
+                    <div class="layui-card-body">
+                        <form class="layui-form" lay-filter="demoForm">
+
+                            <!--下拉选择-->
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">下拉标题</label>
+                                <div class="layui-input-block">
+                                    <select name="pid" lay-filter="selectPId">
+                                        <option value="1">下拉选项1</option>
+                                        <option value="2">下拉选项2</option>
+                                        <option value="3">下拉选项3</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--联动选择框-->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">联动选择框</label>
+                                <div class="layui-input-inline">
+                                    <select name="quiz1">
+                                        <option value="">请选择省</option>
+                                        <option value="浙江" selected="">浙江省</option>
+                                        <option value="你的工号">江西省</option>
+                                        <option value="你最喜欢的老师">福建省</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <select name="quiz2">
+                                        <option value="">请选择市</option>
+                                        <option value="杭州">杭州</option>
+                                        <option value="宁波" disabled="">宁波</option>
+                                        <option value="温州">温州</option>
+                                        <option value="温州">台州</option>
+                                        <option value="温州">绍兴</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <select name="quiz3">
+                                        <option value="">请选择县/区</option>
+                                        <option value="西湖区">西湖区</option>
+                                        <option value="余杭区">余杭区</option>
+                                        <option value="拱墅区">临安市</option>
+                                    </select>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">此处只是演示联动排版，并未做联动交互</div>
+                            </div>
+
+                            <!--搜索选择框-->
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">搜索选择框</label>
+                                <div class="layui-input-block">
+                                    <select name="modules" lay-verify="required" lay-search="">
+                                        <option value="">直接选择或搜索选择</option>
+                                        <option value="1">layer</option>
+                                        <option value="2">form</option>
+                                        <option value="3">layim</option>
+                                        <option value="4">element</option>
+                                        <option value="5">laytpl</option>
+                                        <option value="6">upload</option>
+                                        <option value="7">laydate</option>
+                                        <option value="8">laypage</option>
+                                        <option value="9">flow</option>
+                                        <option value="10">util</option>
+                                        <option value="11">code</option>
+                                        <option value="12">tree</option>
+                                        <option value="13">layedit</option>
+                                        <option value="14">nav</option>
+                                        <option value="15">tab</option>
+                                        <option value="16">table</option>
+                                        <option value="17">select</option>
+                                        <option value="18">checkbox</option>
+                                        <option value="19">switch</option>
+                                        <option value="20">radio</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--日期选择-->
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">日期选择</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="dates" id="dates" lay-verify="dates" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <!--文本框标题-->
+                            <div class="layui-form-ite layui-input-md">
+                                <label class="layui-form-label">文本框标题</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="文本框提示信息" class="layui-input">
+                                </div>
+                            </div>
+
+                            <!--单选按钮-->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">按钮标题</label>
+                                <div class="layui-input-block">
+                                    <input type="checkbox" checked="" name="open" value="1" lay-skin="switch" lay-text="是|否">
+                                </div>
+                            </div>
+
+                            <!--单选框-->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">单选框</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="sex" value="男" title="男" checked="">
+                                    <input type="radio" name="sex" value="女" title="女">
+                                    <input type="radio" name="sex" value="禁" title="禁用" disabled="">
+                                </div>
+                            </div>
+
+                            <!--复选框-->
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">复选框</label>
+                                <div class="layui-input-block">
+                                    <input type="checkbox" name="like[write]" title="写作">
+                                    <input type="checkbox" name="like[read]" title="阅读" checked="">
+                                    <input type="checkbox" name="like[game]" title="游戏">
+                                </div>
+                            </div>
+
+                            <!--原始复选框-->
+                            <div class="layui-form-item" pane="">
+                                <label class="layui-form-label">原始复选框</label>
+                                <div class="layui-input-block">
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">
+                                    <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">
+                                    <input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">
+                                </div>
+                            </div>
+
+                            <!--普通文本域-->
+                            <div class="layui-form-item layui-form-text layui-input-md">
+                                <label class="layui-form-label">普通文本域</label>
+                                <div class="layui-input-block">
+                                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+
+                            <!--图片上传-->
+                            <div class="layui-form-item layui-input-bg">
+                                <label class="layui-form-label">缩略图</label>
+                                <div class="layui-input-inline-upload">
+                                    <ul class="upload-ul clearfix">
+                                        <li class="upload-pick">
+                                            <div class="webuploader-container clearfix" id="imgUpload"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">*必填(建议尺寸 1920*1080px)</div>
+                            </div>
+
+                            <!--富文本-->
+                            <div class="layui-form-item layui-input-bg" >
+                                <label class="layui-form-label">富文本</label>
+                                <div class="layui-input-block">
+                                    <textarea id="editor" name="content" lay-verify="required"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item item-submit">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="form_submit">立即提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--上传文件引入文件-->
+{load href="/static/plugin/jquery/jquery-3.1.1.js" /}
+{load href="/static/plugin/aoupload/css/singleUp.css" /}
+{load href="/static/plugin/aoupload/js/webuploader.min.js" /}
+{load href="/static/plugin/aoupload/js/singleUpload.js" /}
+{load href="/static/plugin/kind/kind-all-min.js" /}
+
+<script>
+    layui.use(['layer','form', 'laydate','route'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            route = layui.route,
+            laydate = layui.laydate,
+            layer = layui.layer;
+
+        /*设置nav标题*/
+        $("#navTitle").text(route.getRoute().name);
+
+        form.render();
+
+        /*日期初始化*/
+        laydate.render({
+            elem: '#dates'
+        });
+
+        /*表单赋值*/
+        form.val("demoForm", {
+            "title1": '独具匠心'
+            ,"title2": "Have great originality"
+            ,"title3": "2"
+        });
+
+        /*自定义验证规则*/
+        form.verify({
+            title: function(value) {
+                if (value.length > 20) {
+                    return '返回提示信息';
+                }
+            },
+
+
+        });
+
+        /*监听提交*/
+        form.on('submit(form_submit)', function(data) {
+            $.post("/active/func",data.field,function(res){
+                layer.msg(res.msg);
+                if(res.url != "")
+                    window.location.href="#"+res.url;
+            });
+            return false;
+        });
+
+    });
+</script>
+
+<script>
+    //上传图片-缩略图
+    $('#imgUpload').diyUpload({
+        buttonText : '',
+        //类型限制;
+        accept: {
+            title: "Images",
+            extensions: 'jpg,jpeg,png'
+        },
+        //配置生成缩略图的选项
+        thumb:{
+            width:120,
+            height:120,
+            quality:100,
+            allowMagnify:true,
+            crop:true,
+            type:"image/jpeg"      // 为空的话则保留原有图片格式。 否则强制转换成指定的类型(image/jpeg)。
+        },
+        swf:"/static/plugin/aoupload/Uploader.swf",
+        //是否支持多文件上传
+        multiple:false,
+        //设置为 true 后，不需要手动调用上传，有文件选择即开始上传
+        auto:true,
+        //文件上传方式,POST或者GET
+        method:"POST",
+        //服务器地址;
+        server:'/uploader',
+        //最大上传的文件数量
+        fileNumLimit:5,
+        //总文件大小(单位字节);
+        fileSizeLimit:500000 * 1024,
+        //单个文件大小(单位字节);
+        fileSingleSizeLimit:50000 * 1024,
+        //自定义内容信息
+        custom:{
+            inputName:'img',
+            //input加入ID，只适用于单个上传图片
+            inputId:'img_img',
+            //是否开启单图上传，true|false
+            single:true
+        },
+        success:function( data ) {
+
+        },
+        error:function( err ) { }
+    });
+
+</script>
+<script>
+    //实例化KindEditor编辑器
+    KindEditor.create($('#editor'), {
+        //items:['fontname','|','fontsize','|','forecolor','|','hilitecolor','|','bold','|','italic','|','underline','|','strikethrough','|','justifyleft','|','justifycenter','|','justifyright','|','justifyfull','|','insertorderedlist','|','insertunorderedlist','|','image',],
+        allowImageRemote: false,
+        basePath: '/static/plugin/kind/',
+        themesPath: '/static/plugin/kind/themes/',
+        pluginsPath: '/static/plugin/kind/plugins/',
+        langPath: '/static/plugin/kind/lang/',
+        uploadJson: '/uploader',
+        filePostName: 'file',    //imgFile是编辑器中图片上传的默认表单域名称
+        width: '100%',
+        minHeight: 800,    //最小高度，不用写px单位
+        resizeType: 1,     //2时可以拖动改变宽度和高度，1时只能改变高度，0时不能拖动。
+        allowImageUpload: true,       //允许本地上传图片
+        extraFileUploadParams: '',       //上传图片、Flash、视音频、文件时，支持添加别的参数一并传到服务器
+        afterBlur: function () {
+            //编辑器失去焦点时，同步编辑器中的内容到textarea，在异步提交内容的时候，必须写！否则textarea中的值是不会改变的
+            this.sync();
+        }
+
+    });
+</script>

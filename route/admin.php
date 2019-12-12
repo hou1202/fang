@@ -61,6 +61,17 @@ Route::post('aoogi/permission/status','admin/permission/setStatus');
 Route::resource('aoogi/config','admin/config')->rest('edit',['GET', '/edit/:id','edit'])->except(['read']);
 Route::post('aoogi/config/data','admin/config/getData');
 
+//Banner图banner
+Route::resource('aoogi/banner','admin/banner')->rest('edit',['GET', '/edit/:id','edit']);
+Route::post('aoogi/banner/data','admin/banner/getData');
+
+//企业信息
+Route::resource('aoogi/company','admin/company')->rest('edit',['GET', '/edit/:id','edit'])->except(['read','delete','create','save']);
+
+//核心理念
+Route::resource('aoogi/idea','admin/idea')->rest('edit',['GET', '/edit/:id','edit']);
+Route::post('aoogi/idea/data','admin/idea/getData');
+
 
 //图片上传处理
 Route::post('uploader/[:genre]','admin/Uploader/uploader')->pattern(['genre' => '1']);

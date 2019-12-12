@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[title]</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="keywords" content="[keywords]" />
+    <!-- Fonts-->
+    {load href="/static/index/fonts/fontawesome/font-awesome.min.css" /}
+    {load href="/static/index/fonts/themify-icons/themify-icons.css" /}
+    <!-- Vendors-->
+    {load href="/static/index/vendors/bootstrap4/bootstrap-grid.min.css" /}
+    {load href="/static/index/vendors/magnific-popup/magnific-popup.min.css" /}
+    {load href="/static/index/vendors/owl.carousel/owl.carousel.css" /}
+    <!-- App & fonts-->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;amp;subset=latin-ext">
+    {load href="/static/index/css/main.css" /}
+    {load href="/static/index/css/style.css" /}  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="page-wrap">
+
+    <!-- header -->
+    <header class="header {if ('[active]' == 'home')}header__style-02{/if} >">
+        <div class="container">
+            <div class="header__logo">
+                <a href="home.html">
+                    <img src="/static/index/images/logo.png" alt=""/>
+                </a>
+            </div>
+
+            <!-- consult-nav -->
+            <nav class="consult-nav">
+
+                <!-- consult-menu -->
+                <ul class="consult-menu">
+
+                    <li {if ('[active]' == 'home')}class="current-menu-item"{/if} ><a href="/home">Home</a></li>
+                    <li {if ('[active]' == 'about')}class="current-menu-item"{/if}><a href="about.html">关于我们</a></li>
+                    <!--<li class="menu-item-has-children"><a href="#">page</a>
+                        <ul class="sub-menu">
+                            <li><a href="comming-soon.html">Comming Soon</a>
+                            </li>
+                            <li><a href="404.html">404</a>
+                            </li>
+                            <li><a href="typography.html">Typography</a>
+                            </li>
+                        </ul>
+                    </li>-->
+                    <li {if ('[active]' == 'service')}class="current-menu-item"{/if}>><a href="service.html">服务内容</a></li>
+                    <li {if ('[active]' == 'project')}class="current-menu-item"{/if}>><a href="project.html">合作项目</a></li>
+                    <li {if ('[active]' == 'blog')}class="current-menu-item"{/if}>><a href="blog.html">最新动态</a></li>
+                    <li {if ('[active]' == 'contact')}class="current-menu-item"{/if}>><a href="contact.html">联系我们</a>
+                    </li>
+                </ul><!-- consult-menu -->
+
+                <div class="navbar-toggle"><span></span><span></span><span></span></div>
+            </nav><!-- End / consult-nav -->
+
+        </div>
+    </header><!-- End / header -->
