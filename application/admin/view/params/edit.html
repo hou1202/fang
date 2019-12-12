@@ -1,0 +1,121 @@
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+
+                    <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
+                    <div class="layui-card-header">
+                        <a href="javascript:history.go(-2);" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe65a;</i>
+                            <span>返回</span>
+                        </a>
+                    </div>
+
+                    <div class="layui-card-body">
+                        <form class="layui-form" lay-filter="demoForm">
+                            <input type="hidden" name="_method" value="PUT" />
+                            <input type="hidden" name="type" value="{$Type}" />
+
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">标题</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" value="{$Params.title}" lay-verify="title" autocomplete="off" placeholder="输入标题" class="layui-input">
+                                </div>
+                            </div>
+
+                            {if condition="$Type == 'text' || $Type == 'all'"}
+                                <div class="layui-form-item layui-form-text layui-input-md">
+                                    <label class="layui-form-label">简介内容</label>
+                                    <div class="layui-input-block">
+                                        <textarea name="content" placeholder="请输入说明信息" class="layui-textarea" style="height:200px;">{$Params.content}</textarea>
+                                    </div>
+                                </div>
+                            {/if}
+
+                            {if condition="$Type == 'images' || $Type == 'all'"}
+                                <div class="layui-form-item layui-input-bg">
+                                    <label class="layui-form-label">缩略图</label>
+                                    <div class="layui-input-inline-upload">
+                                        <ul class="upload-ul clearfix">
+                                            <li id="fileBox_WU_FILE0" class="thumbnailList uploadList" >
+                                                <div class="viewThumb">
+                                                    <img src="{$Params.img}" >
+                                                    <input type="hidden" name="img" value="{$Params.img}" />
+                                                </div>
+                                            </li>
+                                            <li class="upload-pick">
+                                                <div class="webuploader-container clearfix" id="imgUpload"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux">
+                                        {if condition="$Params.type == 3"}
+                                        *必填(建议尺寸 360*280pxpx)
+                                        {elseif condition="$Params.type == 4"}
+                                        *必填(建议尺寸 530*400px)
+                                        {else}
+                                        *必填(建议尺寸 1920*1080px)
+                                        {/if}
+                                    </div>
+                                </div>
+                            {/if}
+
+
+                            <div class="layui-form-item item-submit">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="form_submit">立即提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--上传文件引入文件-->
+{load href="/static/plugin/jquery/jquery-3.1.1.js" /}
+{load href="/static/plugin/aoupload/css/singleUp.css" /}
+{load href="/static/plugin/aoupload/js/webuploader.min.js" /}
+{load href="/static/plugin/aoupload/js/singleUpload.js" /}
+
+<script>
+    layui.use(['form', 'layedit', 'laydate','route'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            route = layui.route,
+            layer = layui.layer;
+
+        //设置nav标题
+        $("#navTitle").text(route.getRoute().name);
+
+        form.render();
+
+
+        //自定义验证规则
+        form.verify({
+            title: function(value) {
+                if (value.length > 100) {
+                    return '标题不得大于100个字符';
+                }
+            }
+
+        });
+
+        //监听提交
+        form.on('submit(form_submit)', function(data) {
+            $.post("/aoogi/params/"+"{$Params.id}",data.field,function(res){
+                layer.msg(res.msg);
+                if(res.code == 1)
+                    window.history.go(-2);
+            });
+            return false;
+        });
+
+    });
+</script>
+
+

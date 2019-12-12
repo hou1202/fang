@@ -65,12 +65,21 @@ Route::post('aoogi/config/data','admin/config/getData');
 Route::resource('aoogi/banner','admin/banner')->rest('edit',['GET', '/edit/:id','edit']);
 Route::post('aoogi/banner/data','admin/banner/getData');
 
-//企业信息
-Route::resource('aoogi/company','admin/company')->rest('edit',['GET', '/edit/:id','edit'])->except(['read','delete','create','save']);
+//基本配置信息
+Route::get('aoogi/params/:type','admin/params/create');
+Route::post('aoogi/params','admin/params/save');
+Route::get('aoogi/params/edit/:type/:id','admin/params/edit');
+Route::put('aoogi/params/:id','admin/params/update');
+Route::delete('aoogi/params/:id','admin/params/delete');
+Route::post('aoogi/params/data/:type','admin/params/getData');
 
-//核心理念
-Route::resource('aoogi/idea','admin/idea')->rest('edit',['GET', '/edit/:id','edit']);
-Route::post('aoogi/idea/data','admin/idea/getData');
+
+Route::get('aoogi/params/company','admin/params/company');      //企业简介
+Route::get('aoogi/params/idea','admin/params/idea');        //核心理念
+Route::get('aoogi/params/evaluate','admin/params/evaluate');        //客户评价
+
+
+
 
 
 //图片上传处理

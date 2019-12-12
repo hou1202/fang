@@ -27,26 +27,7 @@ class Params extends Model
     * */
     protected $field = true;
 
-    /**
-     * 获取类型文字状态
-     *
-     **/
-    /*public function getTypeTextAttr($value, $data) {
-        $arr = [
-            1=> '首页滚动Banner图',
-            2=> '服务内容Banner图',
-            3=> '合作项目Banner图',
-            4=> '最新动态Banner图',
-            5=> '首页企业展示图',
-            6=> '首页商务服务背景图',
-            7=> '合作伙伴Logo',
-            8=> '头部企业Logo',
-            9=> '尾部企业Logo',
-            10=> '关于我们Logo图',
-            11=> '尾部二维码',
-        ];
-        return $arr[$data['type']];
-    }*/
+
 
 
 }

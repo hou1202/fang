@@ -15,8 +15,10 @@ class Params extends CommonValidate
      */	
 	protected $rule = [
 	    'id|ID' => 'require|number|isExist:params,id',
-        'title|标题' => 'max:255',
+        'title|标题' => 'require|max:255',
         'img|图片' => 'require|max:250',
+        'content|内容' => 'require',
+        'type' => 'require|in:1,2,3'
 
     ];
     
@@ -30,6 +32,8 @@ class Params extends CommonValidate
         'id.require' => '非有效数据信息',
         'id.number' => '非有效数据信息',
         'id.isExist' => '非有效数据信息',
+        'type.require' => '非有效数据信息',
+        'type.in' => '非有效数据信息',
     ];
 
     /*
@@ -37,15 +41,11 @@ class Params extends CommonValidate
      * 格式：'场景名' => ['字段名1','字段名2']
      * */
     protected $scene = [
-        'title' => ['title'],
+        'text' => ['title','content'],
+        'images' => ['title','img'],
+        'all' => ['title','img','content'],
+        'c_all' => ['title','img','content','type'],
     ];
 
-    /*
-     * 定义编辑 edit 模式下，验证场景
-     * */
-    public function sceneEdit()
-    {
-        return $this -> only(['title','info','img'])
-            ->remove('img','require');
-    }
+
 }
