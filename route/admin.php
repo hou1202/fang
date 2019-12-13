@@ -73,10 +73,16 @@ Route::put('aoogi/params/:id','admin/params/update');
 Route::delete('aoogi/params/:id','admin/params/delete');
 Route::post('aoogi/params/data/:type','admin/params/getData');
 
+//团队成员team
+Route::resource('aoogi/team','admin/team')->rest('edit',['GET', '/edit/:id','edit']);
+Route::post('aoogi/team/data','admin/team/getData');
 
 Route::get('aoogi/params/company','admin/params/company');      //企业简介
 Route::get('aoogi/params/idea','admin/params/idea');        //核心理念
 Route::get('aoogi/params/evaluate','admin/params/evaluate');        //客户评价
+Route::get('aoogi/params/question','admin/params/question');        //首页三问
+Route::get('aoogi/params/realm','admin/params/realm');      //首页服务领域
+Route::get('aoogi/params/term','admin/params/term');      //领域四项
 
 
 

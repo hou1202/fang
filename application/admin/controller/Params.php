@@ -19,7 +19,7 @@ class Params extends AdminController
      */
     public function company()
     {
-        $res = ParamsM::get(1);
+        $res = ParamsM::where('type',1)->find();
         if(!$res) return $this->redirectError('非有效数据信息');
         $this->assign('Params',$res);
         return view('params/company');
@@ -45,6 +45,41 @@ class Params extends AdminController
     {
         //
         return view('params/evaluate');
+    }
+
+    /**
+     * 显示资源列表-question
+     *
+     * @return \think\Response
+     */
+    public function question()
+    {
+        //
+        return view('params/question');
+    }
+
+    /**
+     * 显示资源列表-Realm
+     *
+     * @return \think\Response
+     */
+    public function realm()
+    {
+        $res = ParamsM::where('type',5)->find();
+        if(!$res) return $this->redirectError('非有效数据信息');
+        $this->assign('Params',$res);
+        return view('params/realm');
+    }
+
+    /**
+     * 显示资源列表-term
+     *
+     * @return \think\Response
+     */
+    public function term()
+    {
+        //
+        return view('params/term');
     }
 
     /**

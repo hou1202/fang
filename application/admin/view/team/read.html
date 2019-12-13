@@ -1,0 +1,104 @@
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+
+                    <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
+                    <div class="layui-card-header">
+                        <a href="javascript:history.go(-2);" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe65a;</i>
+                            <span>返回</span>
+                        </a>
+                    </div>
+
+                    <div class="layui-card-body">
+                        <form class="layui-form" lay-filter="demoForm">
+                            <input type="hidden" name="_method" value="PUT" />
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">姓名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" readonly autocomplete="off"  class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">职位</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="posts" readonly autocomplete="off"  class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">毕业院校</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="school" readonly autocomplete="off"  class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">排序</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="sort" readonly  autocomplete="off"  class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-form-text layui-input-md">
+                                <label class="layui-form-label">简介</label>
+                                <div class="layui-input-block">
+                                    <textarea name="info" readonly lay-verify="required" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-input-bg">
+                                <label class="layui-form-label">展示图</label>
+                                <div class="layui-input-inline-upload">
+                                    <ul class="upload-ul clearfix">
+                                        <li id="fileBox_WU_FILE0" class="thumbnailList uploadList" >
+                                            <div class="viewThumb">
+                                                <img src="{$Team.img}" >
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux"></div>
+                            </div>
+
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    layui.use(['form', 'layedit', 'laydate','route'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            route = layui.route,
+            layer = layui.layer;
+
+        //设置nav标题
+        $("#navTitle").text(route.getRoute().name);
+
+        form.render();
+
+        form.val("demoForm", {
+            "name": '{$Team.name}'
+            ,"posts": "{$Team.posts}"
+            ,"school": "{$Team.school}"
+            ,"info": "{$Team.info}"
+            ,"sort": "{$Team.sort}"
+        });
+
+    });
+</script>
+
+
