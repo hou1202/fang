@@ -30,6 +30,13 @@
     border-color:#009688 !important;
     color:#009688 !important;
     padding: 0 0 0 35px !important;
+
+}
+.self-search .search-input-big{
+    width:200px !important;
+}
+.self-search .search-input-big:focus{
+    width:250px !important;
 }
 .self-search .self-search-btn{
     border:0;

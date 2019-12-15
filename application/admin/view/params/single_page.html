@@ -7,7 +7,7 @@
 
                     <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
                     <div class="layui-card-header">
-                        <a href="#/aoogi/params/edit/1/1" class="layui-btn layui-btn-sm">
+                        <a href="#/aoogi/params/edit/1/{$Params.id}" class="layui-btn layui-btn-sm">
                             <i class="layui-icon">&#xe642;</i>
                             <span>编辑</span>
                         </a>
@@ -18,14 +18,14 @@
 
 
                             <div class="layui-form-item layui-input-md">
-                                <label class="layui-form-label">介绍标题</label>
+                                <label class="layui-form-label">标题</label>
                                 <div class="layui-input-block">
                                     <input type="text" readonly value="{$Params.title}" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
 
                             <div class="layui-form-item layui-form-text layui-input-md">
-                                <label class="layui-form-label">企业简介</label>
+                                <label class="layui-form-label">简介</label>
                                 <div class="layui-input-block">
                                     <textarea readonly class="layui-textarea" style="height:500px;">{$Params.content}</textarea>
                                 </div>

@@ -1,0 +1,91 @@
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+
+                    <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
+                    <div class="layui-card-header">
+                        <a href="javascript:history.go(-2);" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe65a;</i>
+                            <span>返回</span>
+                        </a>
+                    </div>
+
+                    <div class="layui-card-body">
+                        <form class="layui-form" lay-filter="demoForm">
+                            <input type="hidden" name="_method" value="PUT" />
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">分类名称</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" lay-verify="required|title" autocomplete="off" placeholder="输入分类名称" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">排序</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="sort" lay-verify="required|sort"  autocomplete="off" placeholder="输入100以内的排序数字（数字大排前）" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item item-submit">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="form_submit">立即提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use(['form', 'layedit', 'laydate','route'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            route = layui.route,
+            layer = layui.layer;
+
+        //设置nav标题
+        $("#navTitle").text(route.getRoute().name);
+
+        form.render();
+
+        form.val("demoForm", {
+            "title": '{$Classify.title}'
+            ,"sort": "{$Classify.sort}"
+        });
+
+        //自定义验证规则
+        form.verify({
+            title: function(value) {
+                if (value.length > 30) {
+                    return '分类名称不得大于30个字符';
+                }
+            },
+            sort: function(value) {
+                if (value > 100 || value <0) {
+                    return '排序请输入0-100以内的整数';
+                }
+            },
+
+        });
+
+        //监听提交
+        form.on('submit(form_submit)', function(data) {
+            $.post("/aoogi/classify/"+"{$Classify.id}",data.field,function(res){
+                layer.msg(res.msg);
+                if(res.url != "")
+                    window.location.href="#"+res.url;
+            });
+            return false;
+        });
+
+    });
+</script>
+

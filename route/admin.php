@@ -73,16 +73,42 @@ Route::put('aoogi/params/:id','admin/params/update');
 Route::delete('aoogi/params/:id','admin/params/delete');
 Route::post('aoogi/params/data/:type','admin/params/getData');
 
-//团队成员team
-Route::resource('aoogi/team','admin/team')->rest('edit',['GET', '/edit/:id','edit']);
-Route::post('aoogi/team/data','admin/team/getData');
-
 Route::get('aoogi/params/company','admin/params/company');      //企业简介
 Route::get('aoogi/params/idea','admin/params/idea');        //核心理念
 Route::get('aoogi/params/evaluate','admin/params/evaluate');        //客户评价
 Route::get('aoogi/params/question','admin/params/question');        //首页三问
 Route::get('aoogi/params/realm','admin/params/realm');      //首页服务领域
 Route::get('aoogi/params/term','admin/params/term');      //领域四项
+Route::get('aoogi/params/home_company','admin/params/homeCompany');      //首页企业简介
+Route::get('aoogi/params/company_label','admin/params/companyLabel');      //首页企业标签
+Route::get('aoogi/params/service_info','admin/params/serviceInfo');      //服务内容页面简介
+
+//团队成员team
+Route::resource('aoogi/team','admin/team')->rest('edit',['GET', '/edit/:id','edit']);
+Route::post('aoogi/team/data','admin/team/getData');
+
+//分类classify
+Route::resource('aoogi/classify','admin/classify')->rest('edit',['GET', '/edit/:id','edit'])->except(['read']);
+Route::post('aoogi/classify/data','admin/classify/getData');
+
+//案例cases
+Route::resource('aoogi/cases','admin/cases')->rest('edit',['GET', '/edit/:id','edit']);
+Route::post('aoogi/cases/data','admin/cases/getData');
+
+//用户反馈tickling
+Route::resource('aoogi/tickling','admin/tickling')->rest('edit',['GET', '/edit/:id','edit'])->except(['create','save','delete']);
+Route::post('aoogi/tickling/data','admin/tickling/getData');
+Route::post('aoogi/tickling/status','admin/tickling/setStatus');
+
+//动态news
+Route::resource('aoogi/news','admin/news')->rest('edit',['GET', '/edit/:id','edit']);
+Route::post('aoogi/news/data','admin/news/getData');
+
+//服务内容services
+Route::resource('aoogi/services','admin/services')->rest('edit',['GET', '/edit/:id','edit'])->except(['read']);
+Route::post('aoogi/services/data','admin/services/getData');
+
+
 
 
 

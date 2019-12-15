@@ -1,0 +1,117 @@
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+
+                <div class="layui-card-body">
+                    <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
+
+                    <div class="layui-card-header">
+                        <div class="self-card-header">
+                            <a href="#/aoogi/cases/create" class="layui-btn layui-btn-sm">
+                                <i class="layui-icon">&#xe654;</i>
+                                <span>新增项目案例</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="layui-card-body">
+                        <!--表格主体-->
+                        <table id="tableHash" lay-filter="tIndex"></table>
+
+                        <!--操作控制-->
+                        <script type="text/html" id="barHash">
+                            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                            <a class="layui-btn layui-btn-xs" lay-event="read">查看</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                        </script>
+
+                        <!--展示图显示控制-->
+                        <script type="text/html" id="setImg">
+                            <img src="{{d.thumbnail}}" alt="" style="width:40px;height:35px;">
+                        </script>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    layui.config({
+        base: '/static/admin/js/'
+    }).use(['jquery', 'table', 'form','route'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            table = layui.table,
+            form = layui.form,
+            route = layui.route;
+
+        //设置nav标题
+        $("#navTitle").text(route.getRoute().name);
+
+        //表格数据获取及定义
+        var tableLoad = table.render({
+            method: 'post',
+            //size: 'sm',
+            limit: 10,
+            limits:[10,20],
+            elem: '#tableHash',
+            height: 'full-235',
+            url: '/aoogi/cases/data', //数据接口
+            page: true, //开启分页
+            cols: [
+                [ //表头
+
+                    {
+                        type:'numbers',title:'序号',width:150
+                    }, {
+                        field: 'title', title: '标题', align: 'center'
+                    }, {
+                        field: 'classify', title: '项目分类', align: 'center'
+                    }, {
+                        field: 'thumbnail', title: '缩略图', align: 'center', templet:'#setImg'
+                    }, {
+                        field: 'address', title: '项目位置', align: 'center'
+                    }, {
+                        field: 'projects', title: '项目名称', align: 'center'
+                    }, {
+                        field: 'leader', title: '项目负责人', align: 'center'
+                    }, {
+                        fixed: 'right', title:'操作', align: 'center', width: 200, toolbar: '#barHash'
+                    }
+                ]
+            ]
+        });
+
+
+
+        //操作栏监听
+        table.on('tool(tIndex)',function(obj){
+            if(obj.event === 'edit'){
+                window.location.href ='#/aoogi/cases/edit/'+obj.data.id;
+            }else if(obj.event === 'read'){
+                window.location.href ='#/aoogi/cases/read/'+obj.data.id;
+            }else if(obj.event === 'del'){
+                layer.confirm('确认删除该项目案例？', {icon: 3, title:'提示'}, function(index){
+                    $.post('/aoogi/cases/'+obj.data.id,{'_method':'DELETE'},function(res){
+                        layer.msg(res.msg);
+                        table.reload('tableHash');
+                    });
+                    layer.close(index);
+                });
+
+            }
+        });
+
+    });
+</script>
+
+
+<style scoped>
+
+</style>

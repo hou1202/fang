@@ -6,6 +6,15 @@
                 <div class="layui-card-body">
                     <blockquote class="layui-elem-quote layui-text" id="navTitle"></blockquote>
 
+                    <div class="layui-card-header">
+                        <div class="self-card-header">
+                            <a href="#/aoogi/services/create" class="layui-btn layui-btn-sm">
+                                <i class="layui-icon">&#xe654;</i>
+                                <span>新增</span>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="layui-card-body">
                         <!--表格主体-->
                         <table id="tableHash" lay-filter="tIndex"></table>
@@ -13,6 +22,13 @@
                         <!--操作控制-->
                         <script type="text/html" id="barHash">
                             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                          <!--  <a class="layui-btn layui-btn-xs" lay-event="read">查看</a>-->
+                        </script>
+
+                        <!--缩略图显示控制-->
+                        <script type="text/html" id="setThumbnail">
+                            <img src="{{d.thumbnail}}" alt="" style="width:40px;height:35px;">
                         </script>
 
                     </div>
@@ -45,7 +61,7 @@
             limits:[10,20],
             elem: '#tableHash',
             height: 'full-235',
-            url: '/aoogi/params/data/2', //数据接口
+            url: '/aoogi/services/data', //数据接口
             page: true, //开启分页
             cols: [
                 [ //表头
@@ -55,7 +71,9 @@
                     }, {
                         field: 'title', title: '标题', align: 'center'
                     }, {
-                        field: 'content', title: '简介说明', align: 'center'
+                        field: 'info', title: '简介', align: 'center'
+                    }, {
+                        field: 'thumbnail', title: '缩略图', align: 'center', templet:'#setThumbnail'
                     }, {
                         fixed: 'right', title:'操作', align: 'center', width: 200, toolbar: '#barHash'
                     }
@@ -68,7 +86,16 @@
         //操作栏监听
         table.on('tool(tIndex)',function(obj){
             if(obj.event === 'edit'){
-                window.location.href ='#/aoogi/params/edit/1/'+obj.data.id;
+                window.location.href ='#/aoogi/services/edit/'+obj.data.id;
+            }else if(obj.event === 'del'){
+                layer.confirm('确认删除该服务内容？', {icon: 3, title:'提示'}, function(index){
+                    $.post('/aoogi/services/'+obj.data.id,{'_method':'DELETE'},function(res){
+                        layer.msg(res.msg);
+                        table.reload('tableHash');
+                    });
+                    layer.close(index);
+                });
+
             }
         });
 
@@ -76,6 +103,3 @@
 </script>
 
 
-<style scoped>
-
-</style>

@@ -14,6 +14,9 @@ class Params extends AdminController
 
     /**
      * 显示资源列表-Company
+     * 企业介绍
+     * type => 1
+     * number => 1
      *
      * @return \think\Response
      */
@@ -22,44 +25,58 @@ class Params extends AdminController
         $res = ParamsM::where('type',1)->find();
         if(!$res) return $this->redirectError('非有效数据信息');
         $this->assign('Params',$res);
-        return view('params/company');
+        return view('params/single_page');
     }
 
     /**
      * 显示资源列表-idea
+     * 核心理念
+     * type => 2
+     * number => 4
      *
      * @return \think\Response
      */
     public function idea()
     {
         //
-        return view('params/idea');
+        $this->assign('Type',2);
+        return view('params/two_text_page');
     }
 
     /**
      * 显示资源列表-evaluate
-     *
+     * 客户评价
+     * type => 3
+     * number => --
      * @return \think\Response
      */
     public function evaluate()
     {
         //
+        $this->assign('Type',3);
         return view('params/evaluate');
     }
 
     /**
      * 显示资源列表-question
+     * 首页三问
+     * type => 4
+     * number => 3
      *
      * @return \think\Response
      */
     public function question()
     {
         //
-        return view('params/question');
+        $this->assign('Type',4);
+        return view('params/three_img_page');
     }
 
     /**
      * 显示资源列表-Realm
+     * 首页服务领域
+     * type => 5
+     * number => 1
      *
      * @return \think\Response
      */
@@ -68,19 +85,73 @@ class Params extends AdminController
         $res = ParamsM::where('type',5)->find();
         if(!$res) return $this->redirectError('非有效数据信息');
         $this->assign('Params',$res);
-        return view('params/realm');
+        return view('params/single_page');
     }
 
     /**
      * 显示资源列表-term
+     * 领域四项
+     * type => 6
+     * number => 4
      *
      * @return \think\Response
      */
     public function term()
     {
         //
-        return view('params/term');
+        $this->assign('Type',6);
+        return view('params/two_text_page');
     }
+
+    /**
+     * 显示资源列表-homeCompany
+     * 首页公司简介
+     * type => 7
+     * number => 1
+     *
+     * @return \think\Response
+     */
+    public function homeCompany()
+    {
+        $res = ParamsM::where('type',7)->find();
+        if(!$res) return $this->redirectError('非有效数据信息');
+        $this->assign('Params',$res);
+        return view('params/single_page');
+    }
+
+
+
+    /**
+     * 显示资源列表-companyLabel
+     * 首页公司标签
+     * type => 8
+     * number => 3
+     *
+     * @return \think\Response
+     */
+    public function companyLabel()
+    {
+        //
+        $this->assign('Type',8);
+        return view('params/two_text_page');
+    }
+
+    /**
+     * 显示资源列表-serviceInfo
+     * 服务内容页面简介
+     * type => 9
+     * number => 1
+     *
+     * @return \think\Response
+     */
+    public function serviceInfo()
+    {
+        //
+        $this->assign('Type',9);
+        return view('params/two_text_page');
+    }
+
+
 
     /**
      * 获取列表数据
@@ -127,11 +198,11 @@ class Params extends AdminController
         $data = $request -> post();
         $validate = new ParamsV();
         if($data['type'] == 1){
-            $scene = 'c_text';
+            $scene = 'c_text';      //未定义
         }elseif($data['type'] == 2){
-            $scene = 'c_images';
+            $scene = 'c_images';    //未定义
         }elseif($data['type'] == 3){
-            $scene = 'c_all';
+            $scene = 'c_all';       //验证标题+简介+图片
         }else{
             return $this->failJson('非有效数据信息');
         }
@@ -173,11 +244,11 @@ class Params extends AdminController
 
         $validate = new ParamsV();
         if($data['type'] == 'text'){
-            $scene = 'text';
+            $scene = 'text';    //验证标题+简介
         }elseif($data['type'] == 'images'){
-            $scene = 'images';
+            $scene = 'images';  //验证标题+图片
         }elseif($data['type'] == 'all'){
-            $scene = 'all';
+            $scene = 'all';     //验证标题+简介+图片
         }else{
             return $this->failJson('非有效数据信息');
         }
