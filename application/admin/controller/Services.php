@@ -124,6 +124,7 @@ class Services extends AdminController
     {
 
         $data = $request -> post();
+        //var_dump($data);die;
         $res = ServicesM::get($id);
         if(!$res) return $this->failJson('非有效数据信息');
 
@@ -133,23 +134,31 @@ class Services extends AdminController
             return $this->failJson($validate->getError());
 
         //验证标签数据
-        $val_label = new ServicesLabel();
-        foreach($data['labels'] as $value){
-            if(!$val_label->scene('edit')->check($value))
-                return $this->failJson($validate->getError());
+        if(isset($data['labels'])){
+
+            $val_label = new ServicesLabel();
+            foreach($data['labels'] as $value){
+                if(!$val_label->scene('edit')->check($value))
+                    return $this->failJson($validate->getError());
+            }
+            var_dump(123);die;
+            Db::startTrans();
+            try {
+                $res->save($data);
+                $res->servicesLabel()->saveAll($data['labels']);
+                Db::commit();
+            } catch(\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+                return $this->failJson('更新失败');
+            }
+            return $this->successJson('更新成功','/aoogi/services');
+        }else{
+            var_dump(13);die;
+            return $res->save($data) ? $this->successJson('更新成功','/aoogi/services') : $this->failJson('更新失败');
         }
 
-        Db::startTrans();
-        try {
-            $res->save($data);
-            $res->servicesLabel()->saveAll($data['labels']);
-            Db::commit();
-        } catch(\Exception $e) {
-            // 回滚事务
-            Db::rollback();
-            return $this->failJson('更新失败');
-        }
-        return $this->successJson('更新成功','/aoogi/services');
+
 
         //return $res->save($data) ? $this->successJson('更新成功','/aoogi/services') : $this->failJson('更新失败');
 
@@ -181,6 +190,17 @@ class Services extends AdminController
     public function delete($id)
     {
         return ServicesM::destroy($id) ? $this->successJson('删除成功') : $this->failJson('删除失败');
+    }
+
+    /**
+     * 删除指定资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function delLabel($id)
+    {
+        return ServicesLabelM::destroy($id) ? $this->successJson('删除成功') : $this->failJson('删除失败');
     }
 
 

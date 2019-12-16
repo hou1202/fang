@@ -18,7 +18,7 @@ class ServicesLabel extends CommonValidate
 	    'services_id' => 'require|number|isExist:services,id',
         'label_title|标题' => 'require|max:200',
         'label_info|简介' => 'require',
-        'label_icon|图标' => 'require|max:20',
+        'label_icon|图标' => 'require|max:40',
     ];
     
     /**

@@ -107,6 +107,7 @@ Route::post('aoogi/news/data','admin/news/getData');
 //服务内容services
 Route::resource('aoogi/services','admin/services')->rest('edit',['GET', '/edit/:id','edit'])->except(['read']);
 Route::post('aoogi/services/data','admin/services/getData');
+Route::delete('aoogi/services/delLabel/:id','admin/services/delLabel');
 
 
 

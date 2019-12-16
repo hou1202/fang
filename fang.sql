@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.7.17)
-# Date: 2019-12-15 23:47:06
+# Date: 2019-12-17 00:15:41
 # Generator: MySQL-Front 5.3  (Build 4.234)
 
 /*!40101 SET NAMES utf8 */;
@@ -30,7 +30,7 @@ CREATE TABLE `adminer` (
 # Data for table "adminer"
 #
 
-INSERT INTO `adminer` VALUES (1,'admin','96e79218965eb72c92a549dd5a330112','Amdin',1,1,1,'admin12sdf','127.0.0.1',1576380263,24,'2018-10-23 13:54:17'),(2,'guest','96e79218965eb72c92a549dd5a330112','guest',1,2,0,'guest','127.0.0.1',1542330568,5,'2018-10-23 15:16:25'),(3,'tests','96e79218965eb72c92a549dd5a330112','Test',1,2,0,'TEST',NULL,NULL,0,'2018-11-14 13:13:10');
+INSERT INTO `adminer` VALUES (1,'admin','96e79218965eb72c92a549dd5a330112','Amdin',1,1,1,'admin12sdf','127.0.0.1',1576502835,25,'2018-10-23 13:54:17'),(2,'guest','96e79218965eb72c92a549dd5a330112','guest',1,2,0,'guest','127.0.0.1',1542330568,5,'2018-10-23 15:16:25'),(3,'tests','96e79218965eb72c92a549dd5a330112','Test',1,2,0,'TEST',NULL,NULL,0,'2018-11-14 13:13:10');
 
 #
 # Structure for table "banner"
@@ -135,7 +135,7 @@ CREATE TABLE `news` (
   `content` text COMMENT '内容',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='动态';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='动态';
 
 #
 # Data for table "news"
@@ -206,7 +206,7 @@ CREATE TABLE `router` (
   `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `router_key` (`id`,`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8 COMMENT='路由规则表';
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8 COMMENT='路由规则表';
 
 #
 # Data for table "router"
@@ -227,12 +227,13 @@ CREATE TABLE `services` (
   `content` text COMMENT '详情',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='服务内容';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='服务内容';
 
 #
 # Data for table "services"
 #
 
+INSERT INTO `services` VALUES (1,'施工项目 & 现场监控管理解决方案','据测算，2019年我国美妆行业市场规模将达到4225亿元，2022年将突破5000亿元','/uploads/20191216/5df79ca8b30e9.jpg','<span style=\"color:#626262;font-family:Roboto, sans-serif;font-size:16px;background-color:#FFFFFF;\">完美日记的高明之处就在于不死磕品牌明星和头部KOL，而是广泛投放腰部和初级KOL。明星和头部KOL在扩大品牌声量上效果显著，但是对于转化而言成本高，灵活度不高。腰部和初级KOL相对成本较低、配合度高，且通过长期稳定运营，与粉丝建立了良好的信任感，意见更容易被潜在客户接受。</span>','2019-12-16 23:05:59'),(2,'施工项目 & 现场监控管理解决方案','从这个意义上说，盲盒的价值不在于它的经济价值，而在于它的认同价值，有多少人愿意相信它的价值，那么它就有价值，这本质跟玩区块链的圈子是差不多的。它极易刺激消费者的非理性购买行为，容易引发外界争议、踩到商业诚信与价值观的红线。','/uploads/20191216/5df79e473c3d9.jpg','<h4 style=\"color:#1F1C2F;font-size:24px;font-family:Roboto, sans-serif;background-color:#FFFFFF;\">\n\t实名制考勤实现\n</h4>\n<p class=\"text\" style=\"color:#626262;font-family:Roboto, sans-serif;font-size:16px;background-color:#FFFFFF;\">\n\t完美日记在小红书上采用了三段式的投放路径，首先与品牌明星和头部KOL合作，短时间内引发大量关注；接着大量投放产出精致深入内容的腰部KOL，通过试色、教程等图文视频内容，引发消费者种草和购买；最后通过购买产品后的素人在平台上分享使用体验，沉淀UGC内容，引发二次传播和声量叠加。\n</p>','2019-12-16 23:11:36'),(3,'施工项目 & 现场监控管理解决方案','从这个意义上说，盲盒的价值不在于它的经济价值，而在于它的认同价值，有多少人愿意相信它的价值，那么它就有价值，这本质跟玩区块链的圈子是差不多的。它极易刺激消费者的非理性购买行为，容易引发外界争议、踩到商业诚信与价值观的红线。','/uploads/20191216/5df7a0fd7fedb.jpg','<h4 style=\"color:#1F1C2F;font-size:24px;font-family:Roboto, sans-serif;background-color:#FFFFFF;\">\n\t实名制考勤实现\n</h4>\n<p class=\"text\" style=\"color:#626262;font-family:Roboto, sans-serif;font-size:16px;background-color:#FFFFFF;\">\n\t完美日记在小红书上采用了三段式的投放路径，首先与品牌明星和头部KOL合作，短时间内引发大量关注；接着大量投放产出精致深入内容的腰部KOL，通过试色、教程等图文视频内容，引发消费者种草和购买；最后通过购买产品后的素人在平台上分享使用体验，沉淀UGC内容，引发二次传播和声量叠加。\n</p>\n<p class=\"text\" style=\"color:#626262;font-family:Roboto, sans-serif;font-size:16px;background-color:#FFFFFF;\">\n\t<span style=\"color:#626262;font-family:Roboto, sans-serif;font-size:16px;background-color:#FFFFFF;\">完美日记的高明之处就在于不死磕品牌明星和头部KOL，而是广泛投放腰部和初级KOL。明星和头部KOL在扩大品牌声量上效果显著，但是对于转化而言成本高，灵活度不高。腰部和初级KOL相对成本较低、配合度高，且通过长期稳定运营，与粉丝建立了良好的信任感，意见更容易被潜在客户接受。</span>\n</p>','2019-12-16 23:22:57');
 
 #
 # Structure for table "services_label"
@@ -241,17 +242,18 @@ CREATE TABLE `services` (
 DROP TABLE IF EXISTS `services_label`;
 CREATE TABLE `services_label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `service_id` int(11) unsigned DEFAULT NULL,
+  `services_id` int(11) unsigned DEFAULT NULL,
   `label_title` varchar(255) DEFAULT NULL,
   `label_info` text,
   `label_icon` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='服务标签';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='服务标签';
 
 #
 # Data for table "services_label"
 #
 
+INSERT INTO `services_label` VALUES (1,NULL,'BIM数据综合分析与统计','小红书目前的用户组成可以简单划分为有明星（认证），头部kol（粉丝数>50万），腰部kol（5万<粉丝数<50万）','ti-briefcase'),(2,NULL,'现场施工实名制管理','据测算，2019年我国美妆行业市场规模将达到4225亿元，2022年将突破5000亿元','ti-flickr-alt'),(6,3,' 现场施工实名制管理','据测算，2019年我国美妆行业市场规模将达到4225亿元，2022年将突破5000亿元','ti-view-list-alt'),(7,3,'企业项目成本三算监控','天猫未来三年交易规模将翻番，完成1亿次新品首发，孵化100个10亿品牌','ti-layout-grid2'),(8,3,'进度、质量形象清算管理','阿里电商从淘宝演化出天猫，带动了淘品牌的崛起，比如御泥坊、阿芙精油、三只松鼠等','ti-layout-column4'),(9,3,'BIM数据综合分析与统计','小红书目前的用户组成可以简单划分为有明星（认证），头部kol（粉丝数>50万），腰部kol（5万<粉丝数<50万）','ti-layout-media-left');
 
 #
 # Structure for table "team"
@@ -292,7 +294,7 @@ CREATE TABLE `tickling` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户反馈';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户反馈';
 
 #
 # Data for table "tickling"

@@ -1,14 +1,32 @@
 
 <style>
-    .add-item .layui-input-md {
-        width:600px !important;
+
+    .add-item .add-item-ul{
+        overflow:hidden;
+        display:flex;
+        border-top:1px solid #009688;
     }
-    .add-item .layui-input-inline,.add-item .layui-input-md .layui-input {
-        width:400px;
+    .add-item .add-item-ul:first-child{
+        border-top:none;
     }
-    .add-item .layui-form-mid {
-        padding:5px 0 !important;
+    .add-item .add-item-ul .layui-input-md {
+        width:30% !important;
+        float:left;
+        margin-right:2%;
     }
+    .add-item .add-item-ul .layui-input-del{
+        width:4% !important;
+        margin-right:0;
+        padding-top:10px !important;
+    }
+    .add-item .add-item-ul .layui-input-md label{
+        float:none;
+        text-align:left;
+    }
+    .add-item .add-item-ul .layui-input-md .layui-input-block{
+        margin-left:0;
+    }
+
     .add-btn{
         margin-left:40px;
     }
@@ -36,7 +54,7 @@
                             <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                                 <ul class="layui-tab-title">
                                     <li class="layui-this">基本信息</li>
-                                    <li>要点信息</li>
+                                    <li>标签信息</li>
                                 </ul>
                                 <div class="layui-tab-content">
                                     <!--基本信息-->
@@ -75,17 +93,35 @@
                                         </div>
                                     </div>
 
-                                    <!--要点信息-->
+                                    <!--标签信息-->
                                     <div class="layui-tab-item add-item">
-                                        <div class="layui-form-item layui-input-md">
-                                            <label class="layui-form-label">获得荣誉</label>
-                                            <div class="layui-input-block">
-                                                <input type="text" name="label[0][info]" lay-verify="h_title" autocomplete="off" placeholder="输入设计师获得荣誉项" class="layui-input">
+
+                                        <div class="add-item-ul">
+                                            <div class="layui-form-item layui-input-md">
+                                                <label class="layui-form-label">标题</label>
+                                                <div class="layui-input-block">
+                                                    <input type="text" name="labels[0][label_title]" lay-verify="l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">
+                                                </div>
+                                            </div>
+                                            <div class="layui-form-item layui-input-md">
+                                                <label class="layui-form-label">ICON图标</label>
+                                                <div class="layui-input-block">
+                                                    <input type="text" name="labels[0][label_icon]" lay-verify="l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">
+                                                </div>
+                                                <div class="layui-form-mid layui-word-aux">
+                                                    <a href="http://www.jq22.com/demo/jQuery-htmoban201704252240/icons.html" target="_blank">查看图标名称点击这里</a>
+                                                </div>
+                                            </div>
+                                            <div class="layui-form-item layui-input-md">
+                                                <label class="layui-form-label">简介</label>
+                                                <div class="layui-input-block">
+                                                    <textarea name="labels[0][label_info]" placeholder="输入简介" class="layui-textarea"></textarea>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <button type="button" class="layui-btn layui-btn-normal layui-btn-sm add-btn" id="addLabel">
-                                            <i class="layui-icon">&#xe654;</i>  增加荣誉项
+                                            <i class="layui-icon">&#xe654;</i>  增加标签项
                                         </button>
                                     </div>
 
@@ -138,6 +174,16 @@
                 if (value.length > 100) {
                     return '标题长度不得大于100个字符';
                 }
+            },
+            l_title: function(value) {
+                if (value.length > 200) {
+                    return '标签标题长度不得大于100个字符';
+                }
+            },
+            l_icon: function(value) {
+                if (value.length > 200) {
+                    return '标签ICON长度不得大于40个字符';
+                }
             }
         });
 
@@ -145,19 +191,37 @@
         var labelNum = 1;
         //添加标签信息
         $("#addLabel").click(function(){
-            var labelInfo = $(['<div class="layui-form-item">',
-                '<label class="layui-form-label">获得荣誉</label>',
-                '<div class="layui-input-inline">',
-                '<input type="text" name="label['+labelNum+'][info]" lay-verify="required|h_title" autocomplete="off" placeholder="输入设计师获得荣誉项" class="layui-input">',
+            var labelInfo = $(['<div class="add-item-ul">',
+                '<div class="layui-form-item layui-input-md">',
+                    '<label class="layui-form-label">标题</label>',
+                    '<div class="layui-input-block">',
+                        '<input type="text" name="labels['+labelNum+'][label_title]" lay-verify="required|l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">',
+                    '</div>',
                 '</div>',
-                '<div class="layui-form-mid layui-word-aux delLabelAdd">',
-                '<button type="button" class="layui-btn  layui-btn-danger layui-btn-sm">',
-                '<i class="layui-icon">&#xe640;</i>',
-                '</button>',
+                '<div class="layui-form-item layui-input-md">',
+                    '<label class="layui-form-label">ICON图标</label>',
+                    '<div class="layui-input-block">',
+                        '<input type="text" name="labels['+labelNum+'][label_icon]" lay-verify="required|l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">',
+                    '</div>',
+                    '<div class="layui-form-mid layui-word-aux">',
+                    '<a href="http://www.jq22.com/demo/jQuery-htmoban201704252240/icons.html" target="_blank">查看图标名称点击这里</a>',
+                    '</div>',
+                '</div>',
+                '<div class="layui-form-item layui-input-md">',
+                    '<label class="layui-form-label">简介</label>',
+                    '<div class="layui-input-block">',
+                        '<textarea name="labels['+labelNum+'][label_info]" placeholder="输入简介" lay-verify="required|h_title" class="layui-textarea"></textarea>',
+                    '</div>',
+                '</div>',
+                '<div class="layui-form-item layui-input-md layui-word-aux layui-input-del delLabelAdd">',
+                    '<button type="button" class="layui-btn  layui-btn-danger layui-btn-sm">',
+                        '<i class="layui-icon">&#xe640;</i>',
+                    '</button>',
                 '</div>',
                 '</div>'].join(''));
             $(this).before(labelInfo);
             labelNum++;
+
         });
         //删除新增标签
         $(document).on("click",".delLabelAdd",function(){

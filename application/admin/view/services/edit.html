@@ -1,13 +1,32 @@
+
 <style>
-    .add-item .layui-input-md {
-        width:600px !important;
+
+    .add-item .add-item-ul{
+        overflow:hidden;
+        display:flex;
+        border-top:1px solid #009688;
     }
-    .add-item .layui-input-inline,.add-item .layui-input-md .layui-input {
-        width:400px;
+    .add-item .add-item-ul:first-child{
+        border-top:none;
     }
-    .add-item .layui-form-mid {
-        padding:5px 0 !important;
+    .add-item .add-item-ul .layui-input-md {
+        width:30% !important;
+        float:left;
+        margin-right:2%;
     }
+    .add-item .add-item-ul .layui-input-del{
+        width:4% !important;
+        margin-right:0;
+        padding-top:10px !important;
+    }
+    .add-item .add-item-ul .layui-input-md label{
+        float:none;
+        text-align:left;
+    }
+    .add-item .add-item-ul .layui-input-md .layui-input-block{
+        margin-left:0;
+    }
+
     .add-btn{
         margin-left:40px;
     }
@@ -36,44 +55,22 @@
                             <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                                 <ul class="layui-tab-title">
                                     <li class="layui-this">基本信息</li>
-                                    <li>所获荣誉</li>
-                                    <li>参与项目</li>
+                                    <li>标签信息</li>
                                 </ul>
                                 <div class="layui-tab-content">
                                     <!--基本信息-->
                                     <div class="layui-tab-item layui-show">
                                         <div class="layui-form-item layui-input-md">
-                                            <label class="layui-form-label">姓名</label>
+                                            <label class="layui-form-label">标题</label>
                                             <div class="layui-input-block">
-                                                <input type="text" name="name" value="{$Designer.name}" lay-verify="required|title" autocomplete="off" placeholder="输入设计师姓名" class="layui-input">
-                                            </div>
-                                        </div>
-
-                                        <div class="layui-form-item layui-input-md">
-                                            <label class="layui-form-label">职位</label>
-                                            <div class="layui-input-block">
-                                                <input type="text" name="positions" value="{$Designer.positions}" lay-verify="required|title" autocomplete="off" placeholder="输入设计师职位" class="layui-input">
-                                            </div>
-                                        </div>
-
-                                        <div class="layui-form-item layui-input-md">
-                                            <label class="layui-form-label">标签</label>
-                                            <div class="layui-input-block">
-                                                <input type="text" name="labels" value="{$Designer.labels}" lay-verify="required|l_title" autocomplete="off" placeholder="输入设计师标签" class="layui-input">
+                                                <input type="text" value="{$Services.title}" name="title" lay-verify="required|title" autocomplete="off" placeholder="输入服务项目标题" class="layui-input">
                                             </div>
                                         </div>
 
                                         <div class="layui-form-item layui-input-md">
                                             <label class="layui-form-label">简介</label>
                                             <div class="layui-input-block">
-                                                <textarea placeholder="输入设计师简介" name="info" lay-verify="required|info" class="layui-textarea">{$Designer.info}</textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="layui-form-item layui-input-md">
-                                            <label class="layui-form-label">是否推荐</label>
-                                            <div class="layui-input-block">
-                                                <input type="checkbox"  name="recom" value="1" {$Designer.recom ?= 'checked'} lay-skin="switch" lay-text="是|否">
+                                                <textarea placeholder="输入服务项目简介" name="info" lay-verify="required" class="layui-textarea">{$Services.info}</textarea>
                                             </div>
                                         </div>
 
@@ -83,7 +80,7 @@
                                                 <ul class="upload-ul clearfix">
                                                     <li id="fileBox_WU_FILE0" class="thumbnailList uploadList" >
                                                         <div class="viewThumb">
-                                                            <img src="{$Designer.thumbnail}" >
+                                                            <img src="{$Services.thumbnail}" >
                                                         </div>
                                                     </li>
                                                     <li class="upload-pick">
@@ -91,95 +88,83 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="layui-form-mid layui-word-aux">*必填(建议尺寸 300*346px)</div>
-                                        </div>
-
-                                        <div class="layui-form-item layui-input-bg">
-                                            <label class="layui-form-label">展示图</label>
-                                            <div class="layui-input-inline-upload">
-                                                <ul class="upload-ul clearfix">
-                                                    <li id="fileBox_WU_FILE1" class="thumbnailList uploadList" >
-                                                        <div class="viewThumb">
-                                                            <img src="{$Designer.img}" >
-                                                        </div>
-                                                    </li>
-                                                    <li class="upload-pick">
-                                                        <div class="webuploader-container clearfix" id="imgUpload"></div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="layui-form-mid layui-word-aux">*必填(建议尺寸 400*650px)</div>
+                                            <div class="layui-form-mid layui-word-aux">*必填(建议尺寸 530*400px)</div>
                                         </div>
 
                                         <div class="layui-form-item layui-input-md" >
-                                            <label class="layui-form-label">履历说明</label>
+                                            <label class="layui-form-label">服务详情</label>
                                             <div class="layui-input-block">
-                                                <textarea id="editor" name="content">{:html_entity_decode($Designer.content)}</textarea>
+                                                <textarea id="editor" name="content">{:html_entity_decode($Services.content)}</textarea>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!--荣誉信息-->
                                     <div class="layui-tab-item add-item">
-                                        {if condition="count($Honor)"}
-                                            {volist name='Honor' id='h' key='hk'}
-                                                <div class="layui-form-item layui-input-md">
-                                                    <label class="layui-form-label">获得荣誉</label>
-                                                    <div class="layui-input-inline">
-                                                        <input type="text" name="honor[{$hk}][info]" value="{$h.info}" lay-verify="h_title" autocomplete="off" placeholder="输入设计师获得荣誉项" class="layui-input">
+                                        {if condition="count($Labels)"}
+                                            {volist name='Labels' id='l' key='k'}
+
+                                                <div class="add-item-ul">
+                                                    <div class="layui-form-item layui-input-md">
+                                                        <label class="layui-form-label">标题</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="labels[$k][label_title]" value="{$l.label_title}" ay-verify="l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">
+                                                        </div>
                                                     </div>
-                                                    <input type="hidden" name="honor[{$hk}][id]" value="{$h.id}" class="oldId">
-                                                    <div class="layui-form-mid layui-word-aux delHonor" lay-data="{$h.id}">
-                                                        <button type="button" class="layui-btn  layui-btn-warm layui-btn-sm">
-                                                            <i class="layui-icon">&#xe640;</i>
-                                                        </button>
+                                                    <div class="layui-form-item layui-input-md">
+                                                        <label class="layui-form-label">ICON图标</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="labels[$k][label_icon]" value="{$l.label_icon}" lay-verify="l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">
+                                                        </div>
+                                                        <div class="layui-form-mid layui-word-aux">
+                                                            <a href="http://www.jq22.com/demo/jQuery-htmoban201704252240/icons.html" target="_blank">查看图标名称点击这里</a>
+                                                        </div>
                                                     </div>
+                                                    <div class="layui-form-item layui-input-md">
+                                                        <label class="layui-form-label">简介</label>
+                                                        <div class="layui-input-block">
+                                                            <textarea name="labels[$k][label_info]" placeholder="输入简介" class="layui-textarea">{$l.label_info}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="labels[{$k}][id]" value="{$l.id}" class="oldId">
+                                                    <div class="layui-form-item layui-input-md layui-word-aux layui-input-del delOldLabel">,
+                                                        <button type="button" class="layui-btn  layui-btn-danger layui-btn-sm">,
+                                                            <i class="layui-icon">&#xe640;</i>,
+                                                        </button>,
+                                                    </div>,
                                                 </div>
                                             {/volist}
                                         {else /}
-                                            <div class="layui-form-item layui-input-md">
-                                                <label class="layui-form-label">获得荣誉</label>
-                                                <div class="layui-input-block">
-                                                    <input type="text" name="honor[0][info]" lay-verify="h_title" autocomplete="off" placeholder="输入设计师获得荣誉项" class="layui-input">
+                                            <div class="add-item-ul">
+                                                <div class="layui-form-item layui-input-md">
+                                                    <label class="layui-form-label">标题</label>
+                                                    <div class="layui-input-block">
+                                                        <input type="text" name="labels[0][label_title]" lay-verify="l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-form-item layui-input-md">
+                                                    <label class="layui-form-label">ICON图标</label>
+                                                    <div class="layui-input-block">
+                                                        <input type="text" name="labels[0][label_icon]" lay-verify="l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">
+                                                    </div>
+                                                    <div class="layui-form-mid layui-word-aux">
+                                                        <a href="http://www.jq22.com/demo/jQuery-htmoban201704252240/icons.html" target="_blank">查看图标名称点击这里</a>
+                                                    </div>
+                                                </div>
+                                                <div class="layui-form-item layui-input-md">
+                                                    <label class="layui-form-label">简介</label>
+                                                    <div class="layui-input-block">
+                                                        <textarea name="labels[0][label_info]" placeholder="输入简介" class="layui-textarea"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                         {/if}
 
-                                        <button type="button" class="layui-btn layui-btn-normal layui-btn-sm add-btn" id="addHonor">
-                                            <i class="layui-icon">&#xe654;</i>  增加荣誉项
+                                        <button type="button" class="layui-btn layui-btn-normal layui-btn-sm add-btn" id="addLabel">
+                                            <i class="layui-icon">&#xe654;</i>  增加标签项
                                         </button>
                                     </div>
 
-                                    <!--项目信息-->
-                                    <div class="layui-tab-item add-item">
-                                        {if condition="count($Project)"}
-                                            {volist name='Project' id='p' key='pk'}
-                                                <div class="layui-form-item layui-input-md">
-                                                    <label class="layui-form-label">参与项目</label>
-                                                    <div class="layui-input-inline">
-                                                        <input type="text" name="projects[{$pk}][info]" value="{$p.info}" lay-verify="p_title" autocomplete="off" placeholder="输入设计师参与项目名称" class="layui-input">
-                                                    </div>
-                                                    <input type="hidden" name="projects[{$pk}][id]" value="{$p.id}" class="oldId">
-                                                    <div class="layui-form-mid layui-word-aux delProject" lay-data="{$p.id}">
-                                                        <button type="button" class="layui-btn  layui-btn-warm layui-btn-sm">
-                                                            <i class="layui-icon">&#xe640;</i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            {/volist}
-                                        {else /}
-                                            <div class="layui-form-item layui-input-md">
-                                                <label class="layui-form-label">参与项目</label>
-                                                <div class="layui-input-block">
-                                                    <input type="text" name="projects[0][info]" lay-verify="p_title" autocomplete="off" placeholder="输入设计师参与项目名称" class="layui-input">
-                                                </div>
-                                            </div>
-                                        {/if}
-
-                                        <button type="button" class="layui-btn layui-btn-normal layui-btn-sm add-btn" id="addProjects">
-                                            <i class="layui-icon">&#xe654;</i>  增加参与项目
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                             <!--提交-->
@@ -217,86 +202,78 @@
         //自定义验证规则
         form.verify({
             title: function(value) {
-                if (value.length < 1 || value.length > 10) {
-                    return '内容长度应在1-10个字符之间';
-                }
-            },
-            h_title: function(value) {
-                if (value.length > 40) {
-                    return '所获荣誉项内容长度不得大于40个字符';
-                }
-            },
-            p_title: function(value) {
-                if (value.length > 40) {
-                    return '参与项目内容长度不得大于40个字符';
+                if (value.length > 100) {
+                    return '标题长度不得大于100个字符';
                 }
             },
             l_title: function(value) {
-                if (value.length > 40) {
-                    return '人物标签长度不得大于40个字符';
+                if (value.length > 200) {
+                    return '标签标题长度不得大于100个字符';
                 }
             },
-            info: function(value) {
-                if (value.length > 250) {
-                    return '人物简介长度不得大于250个字符';
+            l_icon: function(value) {
+                if (value.length > 200) {
+                    return '标签ICON长度不得大于40个字符';
                 }
-            },
+            }
         });
 
-        /*荣誉操作*/
-        var honorNum = 99;
-        //添加荣誉信息
-        $("#addHonor").click(function(){
-            var honorInfo = $(['<div class="layui-form-item">',
-                '<label class="layui-form-label">获得荣誉</label>',
-                '<div class="layui-input-inline">',
-                '<input type="text" name="honor['+honorNum+'][info]" lay-verify="required|h_title" autocomplete="off" placeholder="输入设计师获得荣誉项" class="layui-input">',
+        /*标签操作*/
+        var labelNum = 99;
+        //添加标签信息
+        $("#addLabel").click(function(){
+            var labelInfo = $(['<div class="add-item-ul">',
+                '<div class="layui-form-item layui-input-md">',
+                '<label class="layui-form-label">标题</label>',
+                '<div class="layui-input-block">',
+                '<input type="text" name="labels['+labelNum+'][label_title]" lay-verify="required|l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">',
                 '</div>',
-                '<div class="layui-form-mid layui-word-aux delHonorAdd">',
+                '</div>',
+                '<div class="layui-form-item layui-input-md">',
+                '<label class="layui-form-label">ICON图标</label>',
+                '<div class="layui-input-block">',
+                '<input type="text" name="labels['+labelNum+'][label_icon]" lay-verify="required|l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">',
+                '</div>',
+                '<div class="layui-form-mid layui-word-aux">',
+                '<a href="http://www.jq22.com/demo/jQuery-htmoban201704252240/icons.html" target="_blank">查看图标名称点击这里</a>',
+                '</div>',
+                '</div>',
+                '<div class="layui-form-item layui-input-md">',
+                '<label class="layui-form-label">简介</label>',
+                '<div class="layui-input-block">',
+                '<textarea name="labels['+labelNum+'][label_info]" placeholder="输入简介" lay-verify="required|h_title" class="layui-textarea"></textarea>',
+                '</div>',
+                '</div>',
+                '<div class="layui-form-item layui-input-md layui-word-aux layui-input-del delLabelAdd">',
                 '<button type="button" class="layui-btn  layui-btn-danger layui-btn-sm">',
                 '<i class="layui-icon">&#xe640;</i>',
                 '</button>',
                 '</div>',
                 '</div>'].join(''));
-            $(this).before(honorInfo);
-            honorNum--;
+            $(this).before(labelInfo);
+            labelNum--;
         });
-        //删除新增荣誉
-        $(document).on("click",".delHonorAdd",function(){
+        //删除标签荣誉
+        $(document).on("click",".delLabelAdd",function(){
             $(this).parent().remove();
         });
         //删除已有荣誉信息
-        $(".delHonor").on("click",function(){
-            delOld($(this),'确定删除该获得荣誉信息?',1)
+        $(".delOldLabel").on("click",function(){
+            var id = $(this).parent().find(".oldId").val();
+            var that = $(this);
+            layer.confirm('确定删除该获得荣誉信息?', {icon: 3, title:'提示'}, function(index){
+                layer.close(index);
+                $.post('/aoogi/services/delLabel/'+id,{'_method':'DELETE'},function(res){
+                    if(res.code == 1)
+                        that.parent().remove();
+                    layer.msg(res.msg);
+                    return false;
+                });
+            });
         });
 
 
-        /*项目操作*/
-        var projectsNum = 99;
-        //添加项目信息
-        $("#addProjects").click(function(){
-            var projectsInfo = $(['<div class="layui-form-item">',
-                '<label class="layui-form-label">参与项目</label>',
-                '<div class="layui-input-inline">',
-                '<input type="text" name="projects['+projectsNum+'][info]" lay-verify="required|p_title" autocomplete="off" placeholder="输入设计师参与项目名称" class="layui-input">',
-                '</div>',
-                '<div class="layui-form-mid layui-word-aux delProjectsAdd">',
-                '<button type="button" class="layui-btn  layui-btn-danger layui-btn-sm">',
-                '<i class="layui-icon">&#xe640;</i>',
-                '</button>',
-                '</div>',
-                '</div>'].join(''));
-            $(this).before(projectsInfo);
-            projectsNum--;
-        });
-        //删除新增项目
-        $(document).on("click",".delProjectsAdd",function(){
-            $(this).parent().remove();
-        });
-        //删除已有参项信息
-        $(".delProject").on("click",function(){
-            delOld($(this),'确定删除该参与项目信息?',2)
-        });
+
 
 
         //监听提交
@@ -304,7 +281,7 @@
             if(!data.field.recom)
                 data.field.recom = 0;
 
-            $.post("/aoogi/designer/"+"{$Designer.id}",data.field,function(res){
+            $.post("/aoogi/services/"+"{$Services.id}",data.field,function(res){
                 layer.msg(res.msg);
                 if(res.url != "")
                     window.location.href="#"+res.url;
@@ -312,21 +289,6 @@
             return false;
         });
 
-
-        //规格、参数删除执行操作
-        function delOld($this,msg,mode){
-            var id = $this.parent().find(".oldId").val();
-            var that = $this;
-            layer.confirm(msg, {icon: 3, title:'提示'}, function(index){
-                layer.close(index);
-                $.post('/aoogi/designer/delSpec/'+id,{'_method':'DELETE','mode':mode},function(res){
-                    if(res.code == 1)
-                        that.parent().remove();
-                    layer.msg(res.msg);
-                    return false;
-                });
-            });
-        }
 
     });
 </script>
@@ -378,52 +340,6 @@
         },
         error:function( err ) { }
     });
-    //上传图片-展示图
-    $('#imgUpload').diyUpload({
-        buttonText : '',
-        //类型限制;
-        accept: {
-            title: "Images",
-            extensions: 'jpg,jpeg,png'
-        },
-        //配置生成缩略图的选项
-        thumb:{
-            width:120,
-            height:120,
-            quality:100,
-            allowMagnify:true,
-            crop:true,
-            type:"image/jpeg"      // 为空的话则保留原有图片格式。 否则强制转换成指定的类型(image/jpeg)。
-        },
-        swf:"/static/plugin/aoupload/Uploader.swf",
-        //是否支持多文件上传
-        multiple:false,
-        //设置为 true 后，不需要手动调用上传，有文件选择即开始上传
-        auto:true,
-        //文件上传方式,POST或者GET
-        method:"POST",
-        //服务器地址;
-        server:'/uploader',
-        //最大上传的文件数量
-        fileNumLimit:5,
-        //总文件大小(单位字节);
-        fileSizeLimit:500000 * 1024,
-        //单个文件大小(单位字节);
-        fileSingleSizeLimit:50000 * 1024,
-        //自定义内容信息
-        custom:{
-            inputName:'img',
-            //input加入ID，只适用于单个上传图片
-            inputId:'img_img',
-            //是否开启单图上传，true|false
-            single:true
-        },
-        success:function( data ) {
-            $("#fileBox_WU_FILE1").remove()
-        },
-        error:function( err ) { }
-    });
-
 </script>
 <script>
     //实例化KindEditor编辑器
