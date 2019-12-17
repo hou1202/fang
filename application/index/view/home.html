@@ -9,9 +9,9 @@
 				<div class="slider">
 					
 					<!-- carousel__element owl-carousel -->
-					<div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": true, "autoplayTimeout": 4000, "animateOut":"fadeOut"}'>
+					<div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": false, "autoplayTimeout": 4000, "animateOut":"fadeOut"}'>
 						{volist name="Banner" id="b"}
-						<div class="slider__item" style="background-image: url({$b.img});background-size:100%;">
+						<div class="slider__item" style="background: url({$b.img}) no-repeat;background-size:100%;">
 							<div class="md-tb">
 								<div class="md-tb__cell">
 									<div class="slider__content">
@@ -158,27 +158,27 @@
 									<div>我们期待用我们整个团队的智慧，为您的问题送上一份完美的答案 </div>
 								</div><!-- End / title-01 -->
 								
-								<div class="consult-phone">(+86) 0551 6528 4851</div>
+								<div class="consult-phone">(+86) {$Footer.12}</div>
 							</div>
 						</div>
 						
 						<!-- form-01 -->
 						<div class="form-01 consult-form js-consult-form__content">
 							<h2 class="form-01__title">告诉我们您的问题</h2>
-							<form class="form-01__form">
+							<form class="form-01__form" id="tickForm">
 								<div class="form__item form__item--03">
 									<input type="text" name="name" placeholder="您的姓名..."/>
 								</div>
 								<div class="form__item form__item--03">
-									<input type="text" name="phone" placeholder="您的联系方式..."/>
+									<input type="number" name="phone" placeholder="您的联系方式..."/>
 								</div>
 								<div class="form__item form__item--03">
-									<input type="email" name="email" placeholder="您的单位..."/>
+									<input type="text" name="company" placeholder="您的单位..."/>
 								</div>
 								<div class="form__item">
-									<textarea rows="3" name="Your message" placeholder="告诉我们，我们有什么可以为您效劳的..."></textarea>
+									<textarea rows="3" name="content" placeholder="告诉我们，我们有什么可以为您效劳的..."></textarea>
 								</div>
-								<div class="form__button"><a class="btn btn-primary btn-w180" href="#">发 送</a>
+								<div class="form__button"><a class="btn btn-primary btn-w180 formButton" >发 送</a>
 								</div>
 							</form>
 						</div><!-- End / form-01 -->
@@ -205,46 +205,25 @@
 							
 							<!-- carousel__element owl-carousel -->
 							<div class="carousel__element owl-carousel" data-options='{"loop":true,"dots":true,"nav":false,"margin":30,"responsive":{"0":{"items":1},"992":{"items":2}}}'>
-								
-								<!-- testimonial -->
-								<div class="testimonial">
-									<div class="testimonial__info"><a class="testimonial__avatar" href="#"><img src="/static/index/images/avatars/avatar-01.jpg" alt=""/></a>
-										<h5 class="testimonial__name">加侨置业投资集团</h5>
-										<span class="testimonial__position">COO</span>
-									</div>
-									<div class="testimonial__content">
-										<div class="testimonial__text">
-											完成MVP落地后，给用户体验并收集反馈，难道是要拿给所有用户体验吗？当然不是，产品MVP本身就是不成熟的产品，只是快速验证想法的工具，也是一种敏捷的思维方式。
+
+								{volist name="Discus" id="d"}
+									<!-- testimonial -->
+									<div class="testimonial">
+										<div class="testimonial__info"><a class="testimonial__avatar"><img src="{$d.img}" alt=""/></a>
+											<h5 class="testimonial__name">{$d.title}</h5>
+											<!--<span class="testimonial__position">COO</span>-->
+										</div>
+										<div class="testimonial__content">
+											<div class="testimonial__text">
+												{$d.content}
+											</div>
 										</div>
 									</div>
-								</div><!-- End / testimonial -->
+									<!-- End / testimonial -->
+								{/volist}
 								
 								
-								<!-- testimonial -->
-								<div class="testimonial">
-									<div class="testimonial__info"><a class="testimonial__avatar" href="#"><img src="/static/index/images/avatars/avatar-02.jpg" alt=""/></a>
-										<h5 class="testimonial__name">幸瑞物业管理有限公司</h5>
-										<span class="testimonial__position">CEO</span>
-									</div>
-									<div class="testimonial__content">
-										<div class="testimonial__text">
-											说到底，两者的本质上都是抓住了人性的贪欲——人们喜欢即时反馈，多数有赌徒心理，无论是盲盒，还是答题模式本质上是迎合人们的赌博心理，放大了人性的贪欲与赌性。
-										</div>
-									</div>
-								</div><!-- End / testimonial -->
-								
-								
-								<!-- testimonial -->
-								<div class="testimonial">
-									<div class="testimonial__info"><a class="testimonial__avatar" href="#"><img src="/static/index/images/avatars/1.jpg" alt=""/></a>
-										<h5 class="testimonial__name">国泰置业</h5>
-										<span class="testimonial__position">李启衡</span>
-									</div>
-									<div class="testimonial__content">
-										<div class="testimonial__text">盲盒的经营秩序容易涉及对交易不透明的经营行为、涉嫌违规的炒作行为以及发布虚假广告、欺骗误导消费者的倾向问题，它与直播答题类似，也是涉及到诚信经营的核心价值观问题。
-										</div>
-									</div>
-								</div><!-- End / testimonial -->
+
 								
 							</div><!-- End / carousel__element owl-carousel -->
 							
@@ -253,8 +232,7 @@
 				</section>
 				<!-- End / Section -->
 				
-				<!-- Our partner-->
-				
+				<!-- 伙伴-->
 				<!-- Section -->
 				<section class="md-section">
 					<div class="container">
@@ -271,35 +249,15 @@
 						
 						<!-- carousel__element owl-carousel -->
 						<div class="carousel__element owl-carousel" data-options='{"loop":true,"dots":false,"nav":true,"margin":30,"responsive":{"0":{"items":2},"768":{"items":3},"992":{"items":5}}}'>
-							
+							{volist name="Partner" id="p"}
 							<!--  -->
 							<div>
-								<div class="brand-01__image"><img src="/static/index/images/brands/1.png" alt=""/></div>
+								<div class="brand-01__image"><img src="{$p}" alt=""/></div>
 							</div><!-- End /  -->
+							{/volist}
 							
 							
-							<!--  -->
-							<div>
-								<div class="brand-01__image"><img src="/static/index/images/brands/2.png" alt=""/></div>
-							</div><!-- End /  -->
-							
-							
-							<!--  -->
-							<div>
-								<div class="brand-01__image"><img src="/static/index/images/brands/3.png" alt=""/></div>
-							</div><!-- End /  -->
-							
-							
-							<!--  -->
-							<div>
-								<div class="brand-01__image"><img src="/static/index/images/brands/4.png" alt=""/></div>
-							</div><!-- End /  -->
-							
-							
-							<!--  -->
-							<div>
-								<div class="brand-01__image"><img src="/static/index/images/brands/5.png" alt=""/></div>
-							</div><!-- End /  -->
+
 							
 						</div><!-- End / carousel__element owl-carousel -->
 						
@@ -307,8 +265,7 @@
 				</section>
 				<!-- End / Section -->
 				
-				<!-- Latest Blogs -->
-				
+				<!-- 动态 -->
 				<!-- Section -->
 				<section class="md-section consult-background">
 					<div class="container">
@@ -325,78 +282,52 @@
 						
 						<!-- carousel__element owl-carousel -->
 						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":true,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
-							
+
+							{volist name="News" id="n"}
 							<!--  -->
 							<div>
-								<div class="post-01__media"><a href="#"><img src="/static/index/images/blogs/related-1.jpg" alt=""/></a>
+								<div class="post-01__media"><a href="blog.html"><img src="{$n.thumbnail}" alt=""/></a>
 								</div>
 								<div>
 									<ul class="post-01__categories">
-										<li><a href="#">12-02</a></li>
+										<li><a href="blog.html">{$n.create_time}</a></li>
 									</ul>
-									<h2 class="post-01__title"><a href="#">产品的成功基石：深入理解用户</a></h2>
+									<h2 class="post-01__title"><a href="blog.html">{$n.title}</a></h2>
 									<div class="post-01__time">
-										一款成功的产品，很大程度取决于用户。那么，了解用户、深入理解用户，就是产品的成功基石。 在开始讨论之前，我们不妨仔细思考一下： 我们在面对产品的规划、产品功能
+										{$n.info}
 									</div>
 								</div>
-							</div><!-- End /  -->
-							
-							
-							<!--  -->
-							<div>
-								<div class="post-01__media"><a href="#"><img src="/static/index/images/blogs/related-2.jpg" alt=""/></a>
-								</div>
-								<div>
-									<ul class="post-01__categories">
-										<li><a href="#">11-28</a></li>
-									</ul>
-									<h2 class="post-01__title"><a href="#">全面解构榜单设计：从内在原理到产品设计</a></h2>
-									<div class="post-01__time">
-										榜单是非常常见的产品构成，如何才能设计出好的榜单，让榜单为用户体验锦上添花？ 核心内容概要： 什么是“排行榜”/“榜单”产品
-									</div>
-								</div>
-							</div><!-- End /  -->
-							
-							
-							<!--  -->
-							<div>
-								<div class="post-01__media"><a href="#"><img src="/static/index/images/blogs/related-3.jpg" alt=""/></a>
-								</div>
-								<div>
-									<ul class="post-01__categories">
-										<li><a href="#">11-26</a></li>
-									</ul>
-									<h2 class="post-01__title"><a href="#">为什么你做了那么多，你的数据依旧没有“增长”？</a></h2>
-									<div class="post-01__time">
-										在数据之下，我们的想法似乎越来越没有意义，即使我们绞尽脑汁，实现了各种各样的微创新、跨域，甚至不断的抄袭，对最终数据的影响都微乎其微
-									</div>
-								</div>
-							</div><!-- End /  -->
-							
-							
-							<!--  -->
-							<div>
-								<div class="post-01__media">
-									<a href="#"><img src="/static/index/images/blogs/related-4.jpg" alt=""/></a>
-								</div>
-								<div>
-									<ul class="post-01__categories">
-										<li><a href="#">11-24</a></li>
-									</ul>
-									<h2 class="post-01__title"><a href="#">3年产品，这些你知道吗？</a></h2>
-									<div class="post-01__time">
-										本文作者在本文阐述了自己从事产品经理以来，三年的工作经验。在自我总结的同时，期待可以提高自己
-									</div>
-								</div>
-							</div><!-- End /  -->
+							</div>
+							<!-- End /  -->
+							{/volist}
 							
 						</div><!-- End / carousel__element owl-carousel -->
 					</div>
 				</section>
 				<!-- End / Section -->
-				
 			</div>
 			<!-- End / Content-->
 
+
+
 <!--引入加载footer文件-->
 {include file="default/footer" /}
+<script>
+
+    $(function(){
+
+        $(".formButton").on("click",function(){
+            var formData = $("#tickForm").serializeArray();
+            $.post("/tick",formData,function(res){
+                var tipInfo = $(['<div class="tip">'+res.msg+'</div>'].join(''));
+                $('body').before(tipInfo);
+                setTimeout(function () { $(".tip").remove() }, 2000);
+
+				if(res.code == 1)
+                	document.getElementById("tickForm").reset()
+            });
+
+        });
+
+    });
+</script>

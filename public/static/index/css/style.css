@@ -96,3 +96,22 @@
     border-radius:30%;
 }
 
+.tip{
+    display:inline-block;
+    padding:15px 35px;
+    line-height:15px;
+    background: rgba(139, 159, 138, 0.9);
+    color:#fff;
+    font-size:16px;
+    border-radius:5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*向左向上分别平移自身的一半*/
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transition: 1s;
+
+    z-index: 999;
+
+}

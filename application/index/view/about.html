@@ -13,12 +13,11 @@
 								<!-- title-01 -->
 								<div class="title-01 title-01__style-04">
 									<h6 class="title-01__subTitle">about</h6>
-									<h2 class="title-01__title">合肥方科信息技术有限公司</h2>
+									<h2 class="title-01__title">{$About.com.title}</h2>
 									<div>
-										2007年虎扑获得晨兴资本A轮融资时，就曾在离岸投资中心英属维尔京群岛创立了公司Hoop SportsBVI，在当时这被解读为为境外上市搭建VIE架构。直到2016年，虎扑才真正在A股递交上市申请书。但上市之路并不顺利，曾想借壳ST亚星上市的虎扑，借壳失败后，在第二年主动撤回IPO申请。个中原因在于，虎扑对广告依赖过重，收入模式单一还直接导致，连续几年业绩波动较大，且经营活动现金流量净额和净利润的差异较大。实际上，早在2009年，应当时的电商热潮，虎扑曾推出“卡路里商城”，但在当时各家疯狂烧钱的模式下，卡路里商城早早夭折。2012年，虎扑将此前虎扑论坛的“鉴定中心”独立，孵化了具有导购及鉴别运动装备功能的“识货App”。
-									</div>
+										{$About.com.content}</div>
 									<div class="about-logo">
-										<img src="/static/index/images/logo-img.png" />
+										<img src="{$About.img.0}" />
 									</div>
 								</div><!-- End / title-01 -->
 								
@@ -44,62 +43,22 @@
 							</div>
 						</div>
 						<div class="row">
+							{volist name="$About.idea" id="e" key="k"}
 							<div class="col-md-6 col-lg-3 ">
-								
 								<!-- iconbox -->
 								<div class="iconbox iconbox__style-03">
-									<div class="iconbox__icon"><i class="ti-cup"></i></div>
+									<div class="iconbox__icon"><i class="{if $k == 1}ti-cup{elseif $k == 2 /}ti-crown{elseif $k == 3 /}ti-world{else /}ti-shine{/if}"></i></div>
 									<div>
-										<h2 class="iconbox__title"><a>团结就是力量</a></h2>
+										<h2 class="iconbox__title"><a>{$e.title}</a></h2>
 										<div class="iconbox__description">
-											产品MVP落地难道就是要研发出所有核心功能吗？其实这样的研发成本也不低，并不是最节约成本的做法，只要能拿着这个模型让用户完成核心流程体验即可。
+											{$e.content}
 										</div>
 									</div>
 								</div><!-- End / iconbox -->
 								
 							</div>
-							<div class="col-md-6 col-lg-3 ">
-								
-								<!-- iconbox -->
-								<div class="iconbox iconbox__style-03">
-									<div class="iconbox__icon"><i class="ti-crown"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a>科技促进发展</a></h2>
-										<div class="iconbox__description">
-											产品研发投入成本包含人力成本、时间成本、物力财力等成本，产品MVP可设计极简产品原型，降低成本，避免前期投入成本过大，产品上线后用户并不买单的风险。
-										</div>
-									</div>
-								</div><!-- End / iconbox -->
-								
-							</div>
-							<div class="col-md-6 col-lg-3 ">
-								
-								<!-- iconbox -->
-								<div class="iconbox iconbox__style-03">
-									<div class="iconbox__icon"><i class="ti-world"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a>数据铸就能力</a></h2>
-										<div class="iconbox__description">
-											寻找种子用户体验MVP，快速验证产品是否能解决用户痛点，是如产品设想呢，还是有新的发现，均可记录并评估优化，验证及迭代成本也很低，帮助更好定位产品定位和用户需求。
-										</div>
-									</div>
-								</div><!-- End / iconbox -->
-								
-							</div>
-							<div class="col-md-6 col-lg-3 ">
-								
-								<!-- iconbox -->
-								<div class="iconbox iconbox__style-03">
-									<div class="iconbox__icon"><i class="ti-shine"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a>服务护航成功</a></h2>
-										<div class="iconbox__description">
-											设想很丰满，如要验证产品，难道就必须研发出完整的产品吗？或者将产品的核心功能都研发出来？产品上线后用户就一定会为产品买单吗？
-										</div>
-									</div>
-								</div><!-- End / iconbox -->
-								
-							</div>
+							{/volist}
+
 						</div>
 					</div>
 				</section>

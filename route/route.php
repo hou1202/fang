@@ -36,6 +36,7 @@ Route::get('/project-detail','index/index/projectDetail');
 Route::get('/blog','index/index/blog');
 Route::get('/blog-detail','index/index/blogDetail');
 Route::get('/contact','index/index/contact');
+Route::post('/tick','index/index/tick');
 
 
 

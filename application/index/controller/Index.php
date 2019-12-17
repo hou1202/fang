@@ -8,6 +8,10 @@ use think\Db;
 use app\index\model\Index as User;
 use app\admin\model\Params;
 use app\admin\model\Banner;
+use app\index\validate\Tick;
+use app\common\model\Tickling;
+use app\admin\model\News;
+use app\admin\model\Team;
 
 
 class Index extends BaseController
@@ -52,13 +56,32 @@ class Index extends BaseController
         $res_com = Params::where('type',7)->find();
         $res_lab = Params::where('type',8)->select();
         $res_img = Banner::where('type',5)->column('img');
-        //var_dump($res_img);die;
         $this->assign('About',['com'=>$res_com,'lab'=>$res_lab,'img'=>$res_img]);
+        //评论
+        $res_discus = Params::where('type',3)->select();
+        $this->assign('Discus',$res_discus);
+        //合作伙伴
+        $res_partner = Banner::where('type',7)->column('img','id');
+        $this->assign('Partner',$res_partner);
+        //最新动态
+        $res_news = News::field('title,info,create_time,thumbnail')->limit(0,10)->order("id desc")->select();
+        $this->assign("News",$res_news);
         return view('/home');
     }
 
     public function about()
     {
+        $res_com = Params::where('type',1)->find();
+        $res_idea = Params::where('type',2)->select();
+        $res_img = Banner::where('type',10)->column('img');
+        $this->assign('About',['com'=>$res_com,'idea'=>$res_idea,'img'=>$res_img]);
+
+        //评论
+        $res_discus = Params::where('type',3)->select();
+        $this->assign('Discus',$res_discus);
+        //团队
+        $res_team = Team::order('sort desc')->select();
+        $this->assign('Team',$res_team);
         return view('/about');
     }
 
@@ -95,6 +118,21 @@ class Index extends BaseController
     public function contact()
     {
         return view('/contact');
+    }
+
+    /**
+     * 保存新建的资源
+     *
+     * @param  \think\Request  $request
+     * @return \think\Response
+     */
+    public function tick(Request $request)
+    {
+        $data = $request->param();
+        $validate = new Tick();
+        if(!$validate->scene('create')->check($data))
+            return $this->failJson($validate->getError());
+        return Tickling::create($data) ? $this->successJson('您的问题已经成功提交~~') : $this->failJson('抱歉，提交失败，请重新提交~~');
     }
 
 
