@@ -136,6 +136,7 @@ class Params extends AdminController
         return view('params/two_text_page');
     }
 
+
     /**
      * 显示资源列表-serviceInfo
      * 服务内容页面简介
@@ -152,6 +153,31 @@ class Params extends AdminController
     }
 
 
+    /**
+     * 显示资源列表-dispose
+     * 基本配置参数
+     * type => 10
+     * number --
+     *
+     * @return \think\Response
+     */
+    public function dispose()
+    {
+        /**
+         * 公司名称     =>  10
+         * 商务邮箱     =>  11
+         * 联系电话1    =>  12
+         * 联系电话2    =>  13
+         * 办公地址     =>  14
+         * 网址        =>  15
+         * 版权说明     =>  16
+         * 尾部简介     =>  17
+        */
+        $this->assign('Type',10);
+        return view('params/dispose_list');
+    }
+
+
 
     /**
      * 获取列表数据
@@ -163,7 +189,12 @@ class Params extends AdminController
     {
         $data = $request -> post();
         $map[] = ['id','>',0];
-        $map[] = ['type','=',$type];
+        if($type == 10){
+            $map[] = ['type','in',[10,11,12,13,14,15,16,17]];
+        }else{
+            $map[] = ['type','=',$type];
+        }
+
         if(isset($data['keyword']) && !empty($data['keyword'])){
             $map[] = ['id|title','like','%'.trim($data['keyword']).'%'];
         }
@@ -222,9 +253,11 @@ class Params extends AdminController
     {
         $res = ParamsM::where('id',$id)->find();
         if(!$res) return $this->redirectError('非有效数据信息');
-        $type_arr=[1=>'text',2=>'images',3=>'all'];
         $this->assign('Params',$res);
+        $type_arr=[1=>'text',2=>'images',3=>'all',4=>'dispose'];
         $this->assign('Type',$type_arr[$type]);
+        if($type == 4)
+            return view('params/dispose');
         return view('params/edit');
     }
 
@@ -243,16 +276,14 @@ class Params extends AdminController
         if(!$res) return $this->failJson('非有效数据信息');
 
         $validate = new ParamsV();
-        if($data['type'] == 'text'){
-            $scene = 'text';    //验证标题+简介
-        }elseif($data['type'] == 'images'){
-            $scene = 'images';  //验证标题+图片
-        }elseif($data['type'] == 'all'){
-            $scene = 'all';     //验证标题+简介+图片
-        }else{
-            return $this->failJson('非有效数据信息');
-        }
-        if(!$validate->scene($scene)->check($data))
+
+        /**
+         * text     =>      验证标题+简介
+         * images   =>      验证标题+图片
+         * all      =>      验证标题+简介+图片
+         * dispose  =>      验证简介
+         */
+        if(!$validate->scene($data['type'])->check($data))
             return $this->failJson($validate->getError());
 
         return $res->save($data) ? $this->successJson('更新成功') : $this->failJson('更新失败');

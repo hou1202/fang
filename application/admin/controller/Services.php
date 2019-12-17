@@ -77,7 +77,7 @@ class Services extends AdminController
         $val_label = new ServicesLabel();
         foreach($data['labels'] as $value){
             if(!$val_label->scene('create')->check($value))
-                return $this->failJson($validate->getError());
+                return $this->failJson($val_label->getError());
         }
 
         //事务提交
@@ -92,8 +92,6 @@ class Services extends AdminController
             return $this->failJson('添加失败');
         }
         return $this ->successJson('新增成功','/aoogi/services');
-
-        //return ServicesM::create($data) ? $this->successJson('新增成功','/aoogi/services') : $this->failJson('添加失败');
     }
 
 
@@ -124,7 +122,6 @@ class Services extends AdminController
     {
 
         $data = $request -> post();
-        //var_dump($data);die;
         $res = ServicesM::get($id);
         if(!$res) return $this->failJson('非有效数据信息');
 
@@ -134,33 +131,24 @@ class Services extends AdminController
             return $this->failJson($validate->getError());
 
         //验证标签数据
-        if(isset($data['labels'])){
-
-            $val_label = new ServicesLabel();
-            foreach($data['labels'] as $value){
-                if(!$val_label->scene('edit')->check($value))
-                    return $this->failJson($validate->getError());
-            }
-            var_dump(123);die;
-            Db::startTrans();
-            try {
-                $res->save($data);
-                $res->servicesLabel()->saveAll($data['labels']);
-                Db::commit();
-            } catch(\Exception $e) {
-                // 回滚事务
-                Db::rollback();
-                return $this->failJson('更新失败');
-            }
-            return $this->successJson('更新成功','/aoogi/services');
-        }else{
-            var_dump(13);die;
-            return $res->save($data) ? $this->successJson('更新成功','/aoogi/services') : $this->failJson('更新失败');
+        $val_label = new ServicesLabel();
+        foreach($data['labels'] as $value){
+            if(!$val_label->scene('create')->check($value))
+                return $this->failJson($val_label->getError());
         }
 
+        Db::startTrans();
+        try {
+            $res->save($data);
+            $res->servicesLabel()->saveAll($data['labels']);
+            Db::commit();
+        } catch(\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            return $this->failJson('更新失败');
+        }
+        return $this->successJson('更新成功','/aoogi/services');
 
-
-        //return $res->save($data) ? $this->successJson('更新成功','/aoogi/services') : $this->failJson('更新失败');
 
 
     }
@@ -173,6 +161,7 @@ class Services extends AdminController
      */
     public function read($id)
     {
+
         $res = ServicesM::get($id);
         if(!$res) return $this->redirectError('非有效数据信息');
         $res_label = ServicesLabelM::where('services_id', $id)->select();
@@ -189,7 +178,17 @@ class Services extends AdminController
      */
     public function delete($id)
     {
-        return ServicesM::destroy($id) ? $this->successJson('删除成功') : $this->failJson('删除失败');
+        Db::startTrans();
+        try {
+            ServicesLabelM::where("services_id", $id)->delete();
+            ServicesM::destroy($id);
+            Db::commit();
+        } catch(\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            return $this->failJson('删除失败');
+        }
+        return $this->successJson('删除成功');
     }
 
     /**

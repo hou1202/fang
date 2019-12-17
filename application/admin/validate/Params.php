@@ -45,6 +45,7 @@ class Params extends CommonValidate
         'images' => ['title','img'],
         'all' => ['title','img','content'],
         'c_all' => ['title','img','content','type'],
+        'dispose' => ['content'],
     ];
 
 

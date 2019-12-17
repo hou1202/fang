@@ -10,30 +10,20 @@
 					
 					<!-- carousel__element owl-carousel -->
 					<div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": true, "autoplayTimeout": 4000, "animateOut":"fadeOut"}'>
-						<div class="slider__item" style="background-image: url('/static/index/images/slider.jpg');">
+						{volist name="Banner" id="b"}
+						<div class="slider__item" style="background-image: url({$b.img});background-size:100%;">
 							<div class="md-tb">
 								<div class="md-tb__cell">
 									<div class="slider__content">
 										<div class="container">
-											<h2>施工现场 & 项目管理系统方案解决商</h2>
-											<p>A Bootstrap 4 Responsive multi-purpose Theme for the Business, Web agency and more!</p>
+											<h2>{$b.title}</h2>
+											<p>{$b.info}</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="slider__item" style="background-image: url('/static/index/images/slider.jpg');">
-							<div class="md-tb">
-								<div class="md-tb__cell">
-									<div class="slider__content">
-										<div class="container">
-											<h2>解决社区物业标准化管理</h2>
-											<p>Curabitur elementum urna augue, eu porta purus gravida in. Cras consectetur, lorem a cursus vestibulum, ligula purus iaculis nulla, in dignissim risus turpis id justo. Sed eleifend ante et ligula elei</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						{/volist}
 					</div><!-- End / carousel__element owl-carousel -->
 					
 				</div><!-- End / slider -->
@@ -44,47 +34,21 @@
 					<div class="container">
 						<div class="textbox-group">
 							<div class="row">
-								<div class="col-md-4 col-lg-4 ">
-									
-									<!-- textbox -->
-									<div class="textbox">
-										<div class="textbox__image"><a href="#"><img src="/static/index/images/services/4.jpg" alt=""/></a></div>
-										<div class="textbox__body">
-											<h2 class="textbox__title"><a href="#">我们是谁？</a></h2>
-											<div class="textbox__description">
-												在2018年开年，直播答题引发了全民狂欢热潮，成为2018年第一个风口。当时直播平台打着“知识经济”的旗号，推出的直播答题游戏引发了大规模的用户参与
+								{volist name="Who" id="w"}
+									<div class="col-md-4 col-lg-4 ">
+										<!-- textbox -->
+										<div class="textbox">
+											<div class="textbox__image"><a><img src="{$w.img}" alt=""/></a></div>
+											<div class="textbox__body">
+												<h2 class="textbox__title"><a>{$w.title}</a></h2>
+												<div class="textbox__description">
+													{$w.content}
+												</div>
 											</div>
-										</div>
-									</div><!-- End / textbox -->
-									
-								</div>
-								<div class="col-md-4 col-lg-4 ">
-									
-									<!-- textbox -->
-									<div class="textbox">
-										<div class="textbox__image"><a href="#"><img src="/static/index/images/services/5.jpg" alt=""/></a></div>
-										<div class="textbox__body">
-											<h2 class="textbox__title"><a href="#">我们在做什么？</a></h2>
-											<div class="textbox__description">
-												这种平台机制其实是利用了一种平台方与获奖用户方的信息不透明与信息不对称机制来以极低的成本制造轰动效应，它很可能是利用奖金的幻象刺激的手段
-											</div>
-										</div>
-									</div><!-- End / textbox -->
-									
-								</div>
-								<div class="col-md-4 col-lg-4 ">
-									
-									<!-- textbox -->
-									<div class="textbox">
-										<div class="textbox__image"><a href="#"><img src="/static/index/images/services/6.jpg" alt=""/></a></div>
-										<div class="textbox__body">
-											<h2 class="textbox__title"><a href="#">我们能帮你做什么？</a></h2>
-											<div class="textbox__description">
-												因为按照10万奖金均分模式，如果一场答题是10个人答对，但每人就可以均分一万，但这对平台方是10万成本，但是获奖用户多寡是不透明的</div>
-										</div>
-									</div><!-- End / textbox -->
-									
-								</div>
+										</div><!-- End / textbox -->
+
+									</div>
+								{/volist}
 							</div>
 						</div>
 					</div>
@@ -102,9 +66,9 @@
 								<div class="iconbox">
 									<div class="iconbox__icon"><i class="ti-stack-overflow"></i></div>
 									<div>
-										<h2 class="iconbox__title"><a href="#">我们的服务领域</a></h2>
+										<h2 class="iconbox__title"><a href="service.html">{$Services.title}</a></h2>
 										<div class="iconbox__description">
-											再看盲盒。所谓盲盒，即用不透明的密封盒售卖系列玩具，里面通常是一款内装一款人偶玩具或动漫剧中卡通玩具的盒子，它最大的特点是设计了隐藏款，买到了就相当于中奖，消费者购买时并不知道里面装的到底是哪一款，只有打开后才知道。盲盒营销就是类似于一种抽奖游戏的商品营销手法，能够大大刺激用户的复购率。
+											{$Services.content}
 										</div>
 									</div>
 								</div><!-- End / iconbox -->
@@ -112,62 +76,20 @@
 							</div>
 						</div>
 						<div class="row">
+							{volist name="ServicesLab" id="l" key="k"}
 							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
 								<!-- iconbox -->
 								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-layout-accordion-list"></i></div>
+									<div class="iconbox__icon"><i class="{if $k == 1}ti-layout-accordion-list{elseif $k == 2 /}ti-ruler-pencil{elseif $k == 3 /}ti-harddrives{else /}ti-briefcase{/if}"></i></div>
 									<div>
-										<h2 class="iconbox__title"><a href="#">建筑智能化</a></h2>
+										<h2 class="iconbox__title"><a href="service.html">{$l.title}</a></h2>
 										<div class="iconbox__description">
-											盲盒也是利用品牌方与用户方的信息不透明与不对称机制来赚钱，有商家表示盲盒抽中的概率大概为1/140
+											{$l.content}
 										</div>
 									</div>
 								</div><!-- End / iconbox -->
-								
 							</div>
-							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
-								<!-- iconbox -->
-								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-ruler-pencil"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a href="#">企业施工项目和现场管理</a></h2>
-										<div class="iconbox__description">
-											我如果是经销商会先把盲盒走一遍x光把限量版找出来单独卖，再不济一套盲盒通过称重也知道大概是哪一款
-										</div>
-									</div>
-								</div><!-- End / iconbox -->
-								
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
-								<!-- iconbox -->
-								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-harddrives"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a href="#">信息化物业管理平台</a></h2>
-										<div class="iconbox__description">
-											每年花20万元~70万元在盲盒潮玩上的大有人在。但是盲盒的产品价值并不稳固，普通消费者也没有能力掌控稀缺版盲盒的价值走向
-										</div>
-									</div>
-								</div><!-- End / iconbox -->
-								
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
-								<!-- iconbox -->
-								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-briefcase"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a href="#">智能家居及物联网平台</a></h2>
-										<div class="iconbox__description">
-											隐藏款无疑是“诱人深入的目标”，而盲盒收集可成为谈资与炫耀、标签以及圈层的身份与地位，它无疑就是“一种令人痴迷的社交互动”
-										</div>
-									</div>
-								</div><!-- End / iconbox -->
-								
-							</div>
+							{/volist}
 						</div>
 					</div>
 				</section>
@@ -183,46 +105,24 @@
 								<!-- title-01 -->
 								<div class="title-01 title-01__style-03 md-text-left">
 									<h6 class="title-01__subTitle">about</h6>
-									<h2 class="title-01__title">合肥方科信息技术<br/>有限公司</h2>
+									<h2 class="title-01__title">{$About.com.title}</h2>
 									<div>
-										这种互相种草的社交互动其实就对应了“斯金纳箱”原理：在一个密闭的箱子里放一只白鸽，箱子内有一个开关，只要踩它，就能掉落不同的食物，鸽子会通过不同的摸索掌握踩开关获取食物的本领，但是箱子内换成老鼠，且按箱子的次数与投喂食物无关之后，老鼠就会持续不断的按下按钮。
+										{$About.com.content}
 									</div>
 								</div><!-- End / title-01 -->
 								
 								<div class="row">
+									{volist name="$About.lab" id="l"}
 									<div class="col-sm-4 ">
-										
 										<!-- box-number -->
 										<div class="box-number">
 											<div class="box-number__number">
-												<h2 class="js-counter" data-counter-time="2000" data-counter-delay="10">99</h2>
+												<h2 class="js-counter" data-counter-time="2000" data-counter-delay="10">{$l.content}</h2>
 											</div>
-											<div class="box-number__description">参与项目</div>
+											<div class="box-number__description">{$l.title}</div>
 										</div><!-- End / box-number -->
-										
 									</div>
-									<div class="col-sm-4 ">
-										
-										<!-- box-number -->
-										<div class="box-number">
-											<div class="box-number__number">
-												<h2 class="js-counter" data-counter-time="2000" data-counter-delay="10">1200</h2>
-											</div>
-											<div class="box-number__description">服务用户</div>
-										</div><!-- End / box-number -->
-										
-									</div>
-									<div class="col-sm-4 ">
-										
-										<!-- box-number -->
-										<div class="box-number">
-											<div class="box-number__number">
-												<h2 class="js-counter" data-counter-time="2000" data-counter-delay="10">60</h2>
-											</div>
-											<div class="box-number__description">服务团队</div>
-										</div><!-- End / box-number -->
-										
-									</div>
+									{/volist}
 								</div>
 							</div>
 							<div class="col-lg-6 ">
@@ -230,8 +130,11 @@
 									
 									<!-- carousel__element owl-carousel -->
 									<div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":2},"576":{"items":3},"992":{"items":1}}}'>
-										<div class="image-full"><img src="/static/index/images/image-01.jpg" alt=""></div>
-										<div class="image-full"><img src="/static/index/images/image-02.jpg" alt=""></div>
+										{volist name="$About.img" id="g"}
+											<div class="image-full">
+												<img src="{$g}" alt="">
+											</div>
+										{/volist}
 									</div><!-- End / carousel__element owl-carousel -->
 									
 								</div>

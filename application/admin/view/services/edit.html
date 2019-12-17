@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
 
-                                    <!--荣誉信息-->
+                                    <!--标签信息-->
                                     <div class="layui-tab-item add-item">
                                         {if condition="count($Labels)"}
                                             {volist name='Labels' id='l' key='k'}
@@ -108,13 +108,13 @@
                                                     <div class="layui-form-item layui-input-md">
                                                         <label class="layui-form-label">标题</label>
                                                         <div class="layui-input-block">
-                                                            <input type="text" name="labels[$k][label_title]" value="{$l.label_title}" ay-verify="l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">
+                                                            <input type="text" name="labels[{$k}][label_title]" value="{$l.label_title}" ay-verify="l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">
                                                         </div>
                                                     </div>
                                                     <div class="layui-form-item layui-input-md">
                                                         <label class="layui-form-label">ICON图标</label>
                                                         <div class="layui-input-block">
-                                                            <input type="text" name="labels[$k][label_icon]" value="{$l.label_icon}" lay-verify="l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">
+                                                            <input type="text" name="labels[{$k}][label_icon]" value="{$l.label_icon}" lay-verify="l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">
                                                         </div>
                                                         <div class="layui-form-mid layui-word-aux">
                                                             <a href="http://www.jq22.com/demo/jQuery-htmoban201704252240/icons.html" target="_blank">查看图标名称点击这里</a>
@@ -123,15 +123,17 @@
                                                     <div class="layui-form-item layui-input-md">
                                                         <label class="layui-form-label">简介</label>
                                                         <div class="layui-input-block">
-                                                            <textarea name="labels[$k][label_info]" placeholder="输入简介" class="layui-textarea">{$l.label_info}</textarea>
+                                                            <textarea name="labels[{$k}][label_info]" placeholder="输入简介" class="layui-textarea">{$l.label_info}</textarea>
                                                         </div>
                                                     </div>
                                                     <input type="hidden" name="labels[{$k}][id]" value="{$l.id}" class="oldId">
-                                                    <div class="layui-form-item layui-input-md layui-word-aux layui-input-del delOldLabel">,
-                                                        <button type="button" class="layui-btn  layui-btn-danger layui-btn-sm">,
-                                                            <i class="layui-icon">&#xe640;</i>,
-                                                        </button>,
-                                                    </div>,
+                                                    {if condition="$k != 1"}
+                                                        <div class="layui-form-item layui-input-md layui-word-aux layui-input-del delOldLabel">
+                                                            <button type="button" class="layui-btn  layui-btn-danger layui-btn-sm">
+                                                                <i class="layui-icon">&#xe640;</i>
+                                                            </button>
+                                                        </div>
+                                                    {/if}
                                                 </div>
                                             {/volist}
                                         {else /}
@@ -139,13 +141,13 @@
                                                 <div class="layui-form-item layui-input-md">
                                                     <label class="layui-form-label">标题</label>
                                                     <div class="layui-input-block">
-                                                        <input type="text" name="labels[0][label_title]" lay-verify="l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">
+                                                        <input type="text" name="labels[0][label_title]" lay-verify="required|l_title" autocomplete="off" placeholder="输入标题信息" class="layui-input">
                                                     </div>
                                                 </div>
                                                 <div class="layui-form-item layui-input-md">
                                                     <label class="layui-form-label">ICON图标</label>
                                                     <div class="layui-input-block">
-                                                        <input type="text" name="labels[0][label_icon]" lay-verify="l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">
+                                                        <input type="text" name="labels[0][label_icon]" lay-verify="required|l_icon" autocomplete="off" placeholder="输入图标名称，如：ti-headphone" class="layui-input">
                                                     </div>
                                                     <div class="layui-form-mid layui-word-aux">
                                                         <a href="http://www.jq22.com/demo/jQuery-htmoban201704252240/icons.html" target="_blank">查看图标名称点击这里</a>
@@ -182,7 +184,7 @@
 </div>
 <!--上传文件引入文件-->
 {load href="/static/plugin/jquery/jquery-3.1.1.js" /}
-{load href="/static/plugin/aoupload/css/globle.css" /}
+{load href="/static/plugin/aoupload/css/singleUp.css" /}
 {load href="/static/plugin/aoupload/js/webuploader.min.js" /}
 {load href="/static/plugin/aoupload/js/singleUpload.js" /}
 {load href="/static/plugin/kind/kind-all-min.js" /}

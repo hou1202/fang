@@ -117,8 +117,8 @@
         //自定义验证规则
         form.verify({
             title: function(value) {
-                if (value.length > 20) {
-                    return '标题不得大于20个字符';
+                if (value.length > 255) {
+                    return '标题不得大于255个字符';
                 }
             }
 

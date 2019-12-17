@@ -82,6 +82,7 @@ Route::get('aoogi/params/term','admin/params/term');      //领域四项
 Route::get('aoogi/params/home_company','admin/params/homeCompany');      //首页企业简介
 Route::get('aoogi/params/company_label','admin/params/companyLabel');      //首页企业标签
 Route::get('aoogi/params/service_info','admin/params/serviceInfo');      //服务内容页面简介
+Route::get('aoogi/params/dispose','admin/params/dispose');      //配置参数管理
 
 //团队成员team
 Route::resource('aoogi/team','admin/team')->rest('edit',['GET', '/edit/:id','edit']);
@@ -105,7 +106,7 @@ Route::resource('aoogi/news','admin/news')->rest('edit',['GET', '/edit/:id','edi
 Route::post('aoogi/news/data','admin/news/getData');
 
 //服务内容services
-Route::resource('aoogi/services','admin/services')->rest('edit',['GET', '/edit/:id','edit'])->except(['read']);
+Route::resource('aoogi/services','admin/services')->rest('edit',['GET', '/edit/:id','edit']);
 Route::post('aoogi/services/data','admin/services/getData');
 Route::delete('aoogi/services/delLabel/:id','admin/services/delLabel');
 
