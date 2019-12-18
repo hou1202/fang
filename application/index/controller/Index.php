@@ -1,17 +1,18 @@
 <?php
 namespace app\index\controller;
+use app\admin\model\Cases;
+use app\admin\model\Classify;
 use app\common\controller\BaseController;
-use think\facade\Config;
-use think\facade\Env;
 use think\Request;
 use think\Db;
-use app\index\model\Index as User;
 use app\admin\model\Params;
 use app\admin\model\Banner;
 use app\index\validate\Tick;
 use app\common\model\Tickling;
 use app\admin\model\News;
 use app\admin\model\Team;
+use app\admin\model\Services;
+
 
 
 class Index extends BaseController
@@ -20,7 +21,7 @@ class Index extends BaseController
     /*前置处理*/
     protected $beforeActionList = [
         'header',
-        'footer',
+        'footer'=>  ['except'=>'errors'],
     ];
     protected function header()
     {
@@ -87,36 +88,68 @@ class Index extends BaseController
 
     public function service()
     {
+        $res_ban = Banner::where('type',2)->find();
+        $res_tit = Params::where('type',9)->find();
+        $res_ser = Services::field('id,title,info,thumbnail')->select();
+        $this->assign('Banner',$res_ban);
+        $this->assign('Title',$res_tit);
+        $this->assign('Services',$res_ser);
         return view('/service');
     }
 
-    public function serviceDetail()
+    public function serviceDetail($id)
     {
+        $res = Services::get($id);
+        if(!$res)
+            $this->redirect('/errors');
+        $res_lab = $res->servicesLabel;
+        $this->assign('Services',$res);
+        $this->assign('Labels',$res_lab);
         return view('/service-detail');
     }
 
     public function project()
     {
+        $res_ban = Banner::where('type',3)->find();
+        $res_class = Classify::order('sort desc')->select();
+        $res_case = Cases::order('id desc')->append(['labels'])->select();
+        $this->assign('Banner',$res_ban);
+        $this->assign('Classify',$res_class);
+        $this->assign('Case',$res_case);
         return view('/project');
     }
 
-    public function projectDetail()
+    public function projectDetail($id)
     {
+        $res = Cases::where('id',$id)->append(['classify'])->find();
+        if(!$res)
+            $this->redirect('/errors');
+        $this->assign('Case',$res);
         return view('/project-detail');
     }
 
     public function blog()
     {
+        $res_ban = Banner::where('type',4)->find();
+        $res_news = News::field('id,title,info,thumbnail,create_time')->order('id desc')->select();
+        $this->assign('Banner',$res_ban);
+        $this->assign('News',$res_news);
         return view('/blog');
     }
 
-    public function blogDetail()
+    public function blogDetail($id)
     {
+        $res = News::get($id);
+        if(!$res)
+            $this->redirect('/errors');
+        $this->assign('News',$res);
         return view('/blog-detail');
     }
 
     public function contact()
     {
+        $res_cont = Params::where('type','in',[13,18])->column('content','type');
+        $this->assign('Cont', $res_cont);
         return view('/contact');
     }
 
@@ -133,6 +166,11 @@ class Index extends BaseController
         if(!$validate->scene('create')->check($data))
             return $this->failJson($validate->getError());
         return Tickling::create($data) ? $this->successJson('您的问题已经成功提交~~') : $this->failJson('抱歉，提交失败，请重新提交~~');
+    }
+
+    public function errors()
+    {
+        return view('/error');
     }
 
 

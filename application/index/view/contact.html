@@ -13,7 +13,7 @@
 								<!-- title-01 -->
 								<div class="title-01">
 									<h2 class="title-01__title">联系我们</h2>
-									<div>专注于为企业提供信息化管理、应用、实施方案解决措施，并在广州华南理工大学设有企业技术研发中心</div>
+									<div>{$Cont.18}</div>
 								</div><!-- End / title-01 -->
 								
 							</div>
@@ -26,7 +26,7 @@
 									<div class="iconbox__icon"><i class="ti-email"></i></div>
 									<div>
 										<h2 class="iconbox__title"><a href="#">Email</a></h2>
-										<div class="iconbox__description">service@fangke.com</div>
+										<div class="iconbox__description">{$Footer.11}</div>
 									</div>
 								</div><!-- End / iconbox -->
 								
@@ -38,7 +38,7 @@
 									<div class="iconbox__icon"><i class="ti-location-pin"></i></div>
 									<div>
 										<h2 class="iconbox__title"><a href="#">location</a></h2>
-										<div class="iconbox__description">安徽省 . 合肥市 . 包河区<br>加侨国际广场A座22层</div>
+										<div class="iconbox__description">{$Footer.14}</div>
 									</div>
 								</div><!-- End / iconbox -->
 								
@@ -50,7 +50,7 @@
 									<div class="iconbox__icon"><i class="ti-mobile"></i></div>
 									<div>
 										<h2 class="iconbox__title"><a href="#">Telephone</a></h2>
-										<div class="iconbox__description">+86 0551-8521 8563</div>
+										<div class="iconbox__description">+86 {$Cont.13}</div>
 									</div>
 								</div><!-- End / iconbox -->
 								
@@ -60,7 +60,7 @@
 						<!-- form-01 -->
 						<div class="form-01 consult-form js-consult-form__content" id="form01">
 							<h2 class="form-01__title">告诉我们您的问题</h2>
-							<form class="form-01__form">
+							<form class="form-01__form" id="tickForm">
 								<div class="form__item form__item--03">
 									<input type="text" name="name" placeholder="您的姓名..."/>
 								</div>
@@ -71,9 +71,9 @@
 									<input type="text" name="company" placeholder="您的单位..."/>
 								</div>
 								<div class="form__item">
-									<textarea rows="3" name="Your message" placeholder="告诉我们，我们有什么可以为您效劳的..."></textarea>
+									<textarea rows="3" name="content" placeholder="告诉我们，我们有什么可以为您效劳的..."></textarea>
 								</div>
-								<div class="form__button"><a class="btn btn-primary btn-w180" href="#">发 送</a>
+								<div class="form__button"><a class="btn btn-primary btn-w180 formButton">发 送</a>
 								</div>
 							</form>
 						</div><!-- End / form-01 -->
@@ -107,3 +107,22 @@
 
 <!--引入加载footer文件-->
 {include file="default/footer" /}
+<script>
+
+    $(function(){
+
+        $(".formButton").on("click",function(){
+            var formData = $("#tickForm").serializeArray();
+            $.post("/tick",formData,function(res){
+                var tipInfo = $(['<div class="tip">'+res.msg+'</div>'].join(''));
+                $('body').before(tipInfo);
+                setTimeout(function () { $(".tip").remove() }, 2000);
+
+                if(res.code == 1)
+                    document.getElementById("tickForm").reset()
+            });
+
+        });
+
+    });
+</script>

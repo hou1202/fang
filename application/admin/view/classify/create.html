@@ -25,6 +25,13 @@
                             </div>
 
                             <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">分类标签</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="labels" lay-verify="required|labels" autocomplete="off" placeholder="输入分类标签：字母 或 中划线 或 下划线" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-input-md">
                                 <label class="layui-form-label">排序</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="sort" lay-verify="required|sort" value="1" autocomplete="off" placeholder="输入100以内的排序数字（数字大排前）" class="layui-input">
@@ -65,6 +72,7 @@
                     return '分类名称不得大于30个字符';
                 }
             },
+            labels: [/^[a-z]([-_a-z]{4,30})$/,'分类标签须以字母开头，可包含字母、下划线、中划线，5到30个字符'],
             sort: function(value) {
                 if (value > 100 || value <0) {
                     return '排序请输入0-100以内的整数';

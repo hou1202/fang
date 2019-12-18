@@ -16,11 +16,19 @@
                     <div class="layui-card-body">
                         <form class="layui-form" lay-filter="demoForm">
                             <input type="hidden" name="_method" value="PUT" />
+                            <input type="hidden" name="id" />
 
                             <div class="layui-form-item layui-input-md">
                                 <label class="layui-form-label">分类名称</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="title" lay-verify="required|title" autocomplete="off" placeholder="输入分类名称" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-input-md">
+                                <label class="layui-form-label">分类标签</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="labels" lay-verify="required|labels" autocomplete="off" placeholder="输入分类标签：字母 或 中划线 或 下划线" class="layui-input">
                                 </div>
                             </div>
 
@@ -57,7 +65,9 @@
         form.render();
 
         form.val("demoForm", {
-            "title": '{$Classify.title}'
+            "id": '{$Classify.id}'
+            ,"title": '{$Classify.title}'
+            ,"labels": '{$Classify.labels}'
             ,"sort": "{$Classify.sort}"
         });
 
@@ -68,6 +78,7 @@
                     return '分类名称不得大于30个字符';
                 }
             },
+            labels: [/^[a-z]([-_a-z]{4,30})$/,'分类标签须以字母开头，可包含字母、下划线、中划线，5到30个字符'],
             sort: function(value) {
                 if (value > 100 || value <0) {
                     return '排序请输入0-100以内的整数';

@@ -30,13 +30,15 @@ Route::get('/','index/index/index');
 Route::get('/home','index/index/home');
 Route::get('/about','index/index/about');
 Route::get('/service','index/index/service');
-Route::get('/service-detail','index/index/serviceDetail');
+Route::get('/service-detail/:id','index/index/serviceDetail');
 Route::get('/project','index/index/project');
-Route::get('/project-detail','index/index/projectDetail');
+Route::get('/project-detail/:id','index/index/projectDetail');
 Route::get('/blog','index/index/blog');
-Route::get('/blog-detail','index/index/blogDetail');
+Route::get('/blog-detail/:id','index/index/blogDetail');
 Route::get('/contact','index/index/contact');
 Route::post('/tick','index/index/tick');
+Route::get('/errors','index/index/errors');
+
 
 
 

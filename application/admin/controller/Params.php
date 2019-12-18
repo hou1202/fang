@@ -172,6 +172,7 @@ class Params extends AdminController
          * 网址        =>  15
          * 版权说明     =>  16
          * 尾部简介     =>  17
+         * 联系我们简介     =>  17
         */
         $this->assign('Type',10);
         return view('params/dispose_list');
@@ -190,7 +191,7 @@ class Params extends AdminController
         $data = $request -> post();
         $map[] = ['id','>',0];
         if($type == 10){
-            $map[] = ['type','in',[10,11,12,13,14,15,16,17]];
+            $map[] = ['type','in',[10,11,12,13,14,15,16,17,18]];
         }else{
             $map[] = ['type','=',$type];
         }

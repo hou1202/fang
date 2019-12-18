@@ -95,6 +95,9 @@
 .service-icon .iconbox__icon {
     border-radius:30%;
 }
+.detail-img img{
+    width:100% !important;
+}
 
 .tip{
     display:inline-block;

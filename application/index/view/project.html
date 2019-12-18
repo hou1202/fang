@@ -5,11 +5,11 @@
 			<div class="md-content">
 				
 				<!-- page-title -->
-				<div class="page-title banner-project">
+				<div class="page-title banner-project" style="background:url('{$Banner.img}') no-repeat center center;background-size:100%;">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-8 offset-0 offset-sm-0 offset-md-0 offset-lg-2 ">
-								<h2 class="page-title__title">企业合作项目</h2>
+								<h2 class="page-title__title">{$Banner.title}</h2>
 							</div>
 						</div>
 					</div>
@@ -23,158 +23,31 @@
 							<div class="filter">
 								<ul class="filter__list">
 									<li><a href="#" data-filter="*">All</a></li>
-									<li><a href="#" data-filter=".corporate-finance">智能化</a></li>
-									<li><a href="#" data-filter=".seo-optimization">物业</a></li>
-									<li><a href="#" data-filter=".online-marketing">工地</a></li>
-									<li><a href="#" data-filter=".strategy">家居</a></li>
+									{volist name="Classify" id="c"}
+									<li><a href="#" data-filter=".{$c.labels}">{$c.title}</a></li>
+									{/volist}
 								</ul>
 							</div>
 							<div class="grid__inner">
 								<div class="grid-sizer"></div>
-								<div class="grid-item online-marketing">
+								{volist name="Case" id="e"}
+								<div class="grid-item {$e.labels}">
 									<div class="grid-item__inner">
 										<div class="grid-item__content-wrapper">
 											
 											<!-- post-02 -->
 											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/1.jpg" alt=""/></a></div>
+												<div class="post-02__media"><a href="/project-detail/{$e.id}"><img src="{$e.thumbnail}" alt=""/></a></div>
 												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">竞品分析：插旗打卡 VS 小打卡</a></h2>
-													<div class="post-02__department">安徽.合肥</div>
+													<h2 class="post-02__title"><a href="/project-detail/{$e.id}">{$e.title}</a></h2>
+													<div class="post-02__department">{$e.address}</div>
 												</div>
 											</div><!-- End / post-02 -->
 											
 										</div>
 									</div>
 								</div>
-								<div class="grid-item strategy">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/2.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">易用性体验：来自迪士尼世界的5个UX经验</a></h2>
-													<div class="post-02__department">安徽.六安</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item strategy">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/3.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">拿破仑为什么是世界上最好的老板？</a></h2>
-													<div class="post-02__department">江苏.南京</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item online-marketing">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/4.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">活得好的产品，都是在“养鱼”</a></h2>
-													<div class="post-02__department">江苏.苏州</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item online-marketing">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/5.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">图文设计中那些值得学习的套路</a></h2>
-													<div class="post-02__department">浙江.杭州</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item online-marketing">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/6.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">阅读APP竞品分析：掌阅 VS 微信读书</a></h2>
-													<div class="post-02__department">上海</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item seo-optimization">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/7.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">拼多多屡试不爽的裂变，你为什么玩不好？</a></h2>
-													<div class="post-02__department">北京</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item corporate-finance">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/8.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">建议收藏：载入史册的 18 个国外“增长黑客案例”</a></h2>
-													<div class="post-02__department">山东.青岛</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item corporate-finance seo-optimization">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- post-02 -->
-											<div class="post-02">
-												<div class="post-02__media"><a href="project-detail.html"><img src="/static/index/images/projects/9.jpg" alt=""/></a></div>
-												<div class="post-02__body">
-													<h2 class="post-02__title"><a href="project-detail.html">用户触点——联结产品与用户</a></h2>
-													<div class="post-02__department">山东.济南</div>
-												</div>
-											</div><!-- End / post-02 -->
-											
-										</div>
-									</div>
-								</div>
+								{/volist}
 							</div>
 						</div>
 						<!--<div class="text-center"><a class="btn btn-primary btn-w180" href="#">Load more</a></div>-->

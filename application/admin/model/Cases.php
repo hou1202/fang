@@ -36,6 +36,11 @@ class Cases extends Model
         return $title;
     }
 
+    public function getLabelsAttr($value, $data){
+        $labels = Classify::where('id',$data['classify_id'])->value('labels');
+        return $labels;
+    }
+
 
 
 

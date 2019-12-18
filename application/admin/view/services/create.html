@@ -296,7 +296,7 @@
 <script>
     //实例化KindEditor编辑器
     KindEditor.create($('#editor'), {
-        items:['fontname','|','fontsize','|','forecolor','|','hilitecolor','|','bold','|','italic','|','underline','|','strikethrough','|','justifyleft','|','justifycenter','|','justifyright','|','justifyfull','|','insertorderedlist','|','insertunorderedlist','|','image',],
+        //items:['fontname','|','fontsize','|','forecolor','|','hilitecolor','|','bold','|','italic','|','underline','|','strikethrough','|','justifyleft','|','justifycenter','|','justifyright','|','justifyfull','|','insertorderedlist','|','insertunorderedlist','|','image',],
         allowImageRemote: false,
         basePath: '/static/plugin/kind/',
         themesPath: '/static/plugin/kind/themes/',
@@ -305,8 +305,8 @@
         uploadJson: '/uploader',
         filePostName: 'file',    //imgFile是编辑器中图片上传的默认表单域名称
         width: '100%',
-        minHeight: 400,    //最小高度，不用写px单位
-        resizeType: 0,     //2时可以拖动改变宽度和高度，1时只能改变高度，0时不能拖动。
+        minHeight: 600,    //最小高度，不用写px单位
+        resizeType: 2,     //2时可以拖动改变宽度和高度，1时只能改变高度，0时不能拖动。
         allowImageUpload: true,       //允许本地上传图片
         extraFileUploadParams: '',       //上传图片、Flash、视音频、文件时，支持添加别的参数一并传到服务器
         afterBlur: function () {

@@ -82,59 +82,23 @@
 							
 							<!-- carousel__element owl-carousel -->
 							<div class="carousel__element owl-carousel" data-options='{"loop":true,"dots":true,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
-								
+
+								{volist name="Discus" id="d"}
 								<!-- textbox -->
 								<div class="textbox textbox__style-02">
-									<div class="textbox__image"><a href="#"><img src="/static/index/images/avatars/1.jpg" alt=""/></a></div>
+									<div class="textbox__image"><a><img src="{$d.img}" alt=""/></a></div>
 									<div class="textbox__body">
-										<h2 class="textbox__title"><a>幸瑞物业管理有限公司</a></h2>
+										<h2 class="textbox__title"><a>{$d.title}</a></h2>
 										<div class="textbox__description">
-											在中国K12在线英语培训用户城市分布中可以看出，一线城市占39.7%,非一线城市占60.3%，随着新一代父母教育观念的与时俱进，越来越多的非一线城市家长对英语启蒙的重视程度越来越高
+											{$d.content}
 										</div>
 											
 
 											
 									</div>
-								</div><!-- End / textbox -->
-								
-								
-								<!-- textbox -->
-								<div class="textbox textbox__style-02">
-									<div class="textbox__image"><a href="#"><img src="/static/index/images/avatars/2.jpg" alt=""/></a></div>
-									<div class="textbox__body">
-										<h2 class="textbox__title"><a href="#">国泰置业</a></h2>
-										<div class="textbox__description">
-											38%的家长曾为孩子报名过在线英语程，86%的受访者表示未来会为孩子 报名在线英语课程。 超九成家长希望通过K12在线英语教育提升孩子的口语能力，最希望孩子的口语达到“表达流利”的水平。
-										</div>
-											
-									</div>
-								</div><!-- End / textbox -->
-								
-								
-								<!-- textbox -->
-								<div class="textbox textbox__style-02">
-									<div class="textbox__image"><a href="#"><img src="/static/index/images/avatars/3.jpg" alt=""/></a></div>
-									<div class="textbox__body">
-										<h2 class="textbox__title"><a>加侨置业投资集团</a></h2>
-										<div class="textbox__description">
-											2015年李克强总理提出“互联网+”行动计划，使得互联网与教育行业将会有更加紧密的结合。2016年元旦，中国正式实施“全面二孩”政策，这将为K12英语教育带来更多的潜在用户。
-										</div>
-											
-									</div>
-								</div><!-- End / textbox -->
-								
-								
-								<!-- textbox -->
-								<div class="textbox textbox__style-02">
-									<div class="textbox__image"><a href="#"><img src="/static/index/images/avatars/4.jpg" alt=""/></a></div>
-									<div class="textbox__body">
-										<h2 class="textbox__title"><a href="#">绿地房地产开发有限公司</a></h2>
-										<div class="textbox__description">
-											现阶段受教育程度更高的80后、90后群体开始成为父母，未来的生育人群将有更高的受教育水平，更加了解教育的重要性，教育观念也更加开放和先进，未来的家长也必然更加重视子女的教育
-										</div>
-											
-									</div>
-								</div><!-- End / textbox -->
+								</div>
+								<!-- End / textbox -->
+								{/volist}
 								
 							</div><!-- End / carousel__element owl-carousel -->
 							
@@ -160,78 +124,26 @@
 					</div>
 					<div class="consult-project">
 						<div class="row">
+							{volist name="Team" id="t"}
 							<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 " style="padding-left: 5px; padding-right: 5px;">
 								
 								<!-- post-02 -->
 								<div class="post-02 post-02__style-02 js-post-effect">
-									<div class="post-02__media"><img src="/static/index/images/projects/v-1.jpg" alt=""/></div>
+									<div class="post-02__media"><img src="{$t.img}" alt=""/></div>
 									<div class="post-02__body">
-										<h2 class="post-02__title"><a>赵玉通</a></h2>
-										<div class="post-02__department">智能化总工程师</div>
+										<h2 class="post-02__title"><a>{$t.name}</a></h2>
+										<div class="post-02__department">{$t.posts}</div>
 										<div class="post-02__content">
 											<div class="post-02__description">
-												比如我们想设计一款校园社交电商平台，专注于为大学生提供多块好省的消费体验，招募大学生成为合伙人，并构建合伙人会员体系，用户平台下单后由合伙人快速送货到寝。
+												{$t.info}
 											</div>
-											<a class="post-02__link">清华大学</a>
+											<a class="post-02__link">{$t.school}</a>
 										</div>
 									</div>
 								</div><!-- End / post-02 -->
 								
 							</div>
-							<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 " style="padding-left: 5px; padding-right: 5px;">
-								
-								<!-- post-02 -->
-								<div class="post-02 post-02__style-02 js-post-effect">
-									<div class="post-02__media"><img src="/static/index/images/projects/v-2.jpg" alt=""/></div>
-									<div class="post-02__body">
-										<h2 class="post-02__title"><a>钱佩儒</a></h2>
-										<div class="post-02__department">技术总顾问</div>
-										<div class="post-02__content">
-											<div class="post-02__description">
-												平台模式设想很丰满，如若验证平台模式，难道就必须研发出完整的产品吗？或者将产品的核心功能都研发出来？产品上线后用户就一定会为产品买单吗？
-											</div>
-											<a class="post-02__link" href="#">中国科学技术大学</a>
-										</div>
-									</div>
-								</div><!-- End / post-02 -->
-								
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 " style="padding-left: 5px; padding-right: 5px;">
-								
-								<!-- post-02 -->
-								<div class="post-02 post-02__style-02 js-post-effect">
-									<div class="post-02__media"><img src="/static/index/images/projects/v-3.jpg" alt=""/></div>
-									<div class="post-02__body">
-										<h2 class="post-02__title"><a>李兰溪</a></h2>
-										<div class="post-02__department">设计总监</div>
-										<div class="post-02__content">
-											<div class="post-02__description">
-												MVP最早是由《精益创业》中提到的概念，精益创业是硅谷流行的一种创业方法论，其核心思想是产品团队先制作最小可行性产品给有价值的用户使用，获取用户反馈并持续迭代优化产品，不断适应市场环境。
-											</div>
-											<a class="post-02__link">中央美院</a>
-										</div>
-									</div>
-								</div><!-- End / post-02 -->
-								
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 " style="padding-left: 5px; padding-right: 5px;">
-								
-								<!-- post-02 -->
-								<div class="post-02 post-02__style-02 js-post-effect">
-									<div class="post-02__media"><img src="/static/index/images/projects/v-4.jpg" alt=""/></div>
-									<div class="post-02__body">
-										<h2 class="post-02__title"><a>沈成锦</a></h2>
-										<div class="post-02__department">技术开发总监</div>
-										<div class="post-02__content">
-											<div class="post-02__description">
-												如要设计一款医疗健康咨询类App，主要实现用户自助查询、公立医院医生在线解答用户的健康问题。如若要验证idea，不必等完整功能开发完成后再让用户及市场验证，可以设计MVP原型替代真实产品给用户体验。
-											</div>
-											<a class="post-02__link">中国科学技术大学</a>
-										</div>
-									</div>
-								</div><!-- End / post-02 -->
-								
-							</div>
+							{/volist}
 						</div>
 					</div>
 				</section>

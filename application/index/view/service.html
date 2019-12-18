@@ -5,11 +5,11 @@
 			<div class="md-content">
 				
 				<!-- page-title -->
-				<div class="page-title banner-service">
+				<div class="page-title banner-service" style="background:url('{$Banner.img}') no-repeat center center;background-size:100%;">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-8 offset-0 offset-sm-0 offset-md-0 offset-lg-2 ">
-								<h2 class="page-title__title">服务项目</h2>
+								<h2 class="page-title__title">{$Banner.title}</h2>
 							</div>
 						</div>
 					</div>
@@ -24,243 +24,39 @@
 								
 								<!-- title-01 -->
 								<div class="title-01 title-01__style-04">
-									<h2 class="title-01__title">信息化服务专业 <span>解决方案</span> 供应商</h2>
-									<div>网上有很多关于图文结合设计的讨论 ，各大产品的用法也不尽相同，但又符合各自产品的定位。在产品模块中只要有Feed流都会涉及到图文结合的设计，图文到底怎么设计更合理。讨论最多就是用户的阅读顺序，这确实是非常关键的理由，但如果都用阅读顺序来解释的话，不符合顺序的设计岂不是都没有道理</div>
-								</div><!-- End / title-01 -->
+									<!--<h2 class="title-01__title">信息化服务专业 <span>解决方案</span> 供应商</h2>-->
+									<h2 class="title-01__title">{$Title.title}</h2>
+									<div>{$Title.content}</div>
+								</div>
+								<!-- End / title-01 -->
 								
 							</div>
 						</div>
-						
+
+						{volist name="Services" id="s" key="k" mod="2"}
 						<!-- post-03 -->
-						<div class="post-03">
-							<div class="post-03__media"><a href="service-detail.html"><img src="/static/index/images/services/1.jpg" alt=""/></a></div>
-							<div class="post-03__body">
-								<h6 class="post-03__subTitle">service 01</h6>
-								<h2 class="post-03__title"><a href="service-detail.html">施工项目 & 现场监控管理解决方案</a></h2>
-								<div class="post-03__description">最适合的产品类型莫过于具有商品属性的，用户的视觉重心先看到商品图片；再就是使用频率最高的社交类产品，头像作为一种高识别度的载体，容易让人崩溃的是喜欢换头像的同学</div>
-								<a class="post-03__link" href="service-detail.html">了解解决方案  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+						<div class="post-03 {eq name='mod' value='0'}post-03__reverse{/eq}">
+							<div class="post-03__media">
+								<a href="/service-detail/{$s.id}"><img src="{$s.thumbnail}" alt=""/></a>
 							</div>
-						</div><!-- End / post-03 -->
-						
-						
-						<!-- post-03 -->
-						<div class="post-03 post-03__reverse">
-							<div class="post-03__media"><a href="service-detail.html"><img src="/static/index/images/services/2.jpg" alt=""/></a></div>
 							<div class="post-03__body">
-								<h6 class="post-03__subTitle">service 02</h6>
-								<h2 class="post-03__title"><a href="service-detail.html">物业标准化管理解决方案</a></h2>
-								<div class="post-03__description">作为区别于左右结构的又一种设计形式，在多图、大图、视频的封面设计中最多，聚焦到图片的视觉层级变得更高，图片的质量好不好，对引导用户是否产生阅读兴趣的影响很大。图片势必被赋予了更重要的意义，好多核心标题都被表达在了封面里。比较适合影像相册、艺术鉴赏、视频等类型的产品设计中。图片的质量很高，鉴赏性也很强。</div>
-								<a class="post-03__link" href="service-detail.html">了解解决方案  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								<h6 class="post-03__subTitle">service 0{$k}</h6>
+								<h2 class="post-03__title"><a href="/service-detail/{$s.id}">{$s.title}</a></h2>
+								<div class="post-03__description">
+									{$s.info}
+								</div>
+								<a class="post-03__link" href="/service-detail/{$s.id}">了解解决方案  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 							</div>
-						</div><!-- End / post-03 -->
-						
-						
-						<!-- post-03 -->
-						<div class="post-03">
-							<div class="post-03__media"><a href="service-detail.html"><img src="/static/index/images/services/3.jpg" alt=""/></a></div>
-							<div class="post-03__body">
-								<h6 class="post-03__subTitle">service 03</h6>
-								<h2 class="post-03__title"><a href="service-detail.html">建筑装修 & 智能化系统工程解决方案</a></h2>
-								<div class="post-03__description">用户的阅读顺序自上而下，相比上图下文的设计，标题被用户优先阅读的层级更高，但标题不是唯一的决定因素，也会受到图片的影响，因为大图的呈现往往是通屏，占据的比例很大，对用户的视觉冲击比较大。好处就是标题内容吸引到用户，占据用户的心智模型，会产生先入为主的优势。这么设计很适合资讯文章中的多图、短视频、大图呈现类产品形式。</div>
-								<a class="post-03__link" href="service-detail.html">了解解决方案  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-							</div>
-						</div><!-- End / post-03 -->
+						</div>
+						<!-- End / post-03 -->
+						{/volist}
 
 
-						<!-- post-03 -->
-						<div class="post-03 post-03__reverse">
-							<div class="post-03__media"><a href="service-detail.html"><img src="/static/index/images/services/2.jpg" alt=""/></a></div>
-							<div class="post-03__body">
-								<h6 class="post-03__subTitle">service 04</h6>
-								<h2 class="post-03__title"><a href="service-detail.html">家居智能化生活解决方案</a></h2>
-								<div class="post-03__description">从图文结合设计的4种类型和用户的阅读顺序中发现，影响用户阅读顺序的并不局限在这些原则中。这些原则太容易被设计细节的引导变化而打破，同样是左图右文，设计引导形式的改变，就会影响到用户的阅读顺序。比如我们以左图右文的形式设计，左边的图片加上圆角、比例缩小、间距拉大、采用卡片设计等等方式。</div>
-								<a class="post-03__link" href="service-detail.html">了解解决方案  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-							</div>
-						</div><!-- End / post-03 -->
 						
 					</div>
 				</section>
 				<!-- End / Section -->
-				
-				
-				<!-- Section -->
-				<!--<section class="md-section js-consult-form js-consult-form&#45;&#45;02" style="background-color:#f7f7f7;">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-10 col-lg-8 offset-0 offset-sm-0 offset-md-1 offset-lg-2 ">
-								
-								&lt;!&ndash; title-01 &ndash;&gt;
-								<div class="title-01 title-01__style-04">
-									<h2 class="title-01__title">We Improve Your Customer Service</h2>
-									<div>Etiam non varius justo, vel tempor mi. Nulla facilisi. Fusce at tortor arcu. Suspendisse maximus ac nisl eu porta. Praesent eget consequat nisi, at mollis turpis. Quisque sed venenatis neque, at mollis magna. Nullam quis interdum augue, non feugiat leo. Mauris efficitur porta maximus. Curabitur auct</div>
-								</div>&lt;!&ndash; End / title-01 &ndash;&gt;
-								
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
-								&lt;!&ndash; iconbox &ndash;&gt;
-								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-announcement"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a href="#">Support Services</a></h2>
-										<div class="iconbox__description">Etiam non varius justo, vel tempor mi. Nulla facilisi. Fusce at tortor arcu. Suspendisse maximus ac </div>
-									</div>
-								</div>&lt;!&ndash; End / iconbox &ndash;&gt;
-								
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
-								&lt;!&ndash; iconbox &ndash;&gt;
-								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-headphone"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a href="#">Email Marketing</a></h2>
-										<div class="iconbox__description">Nam suscipit nisi risus, et porttitor metus molestie a. Phasellus id quam id turpis suscipit pretium</div>
-									</div>
-								</div>&lt;!&ndash; End / iconbox &ndash;&gt;
-								
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
-								&lt;!&ndash; iconbox &ndash;&gt;
-								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-timer"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a href="#">Risk Management</a></h2>
-										<div class="iconbox__description">Integer placerat ullamcorper urna nec rhoncus. Sed velit justo, lacinia non sapien imperdiet, sagitt</div>
-									</div>
-								</div>&lt;!&ndash; End / iconbox &ndash;&gt;
-								
-							</div>
-							<div class="col-sm-6 col-md-6 col-lg-3 ">
-								
-								&lt;!&ndash; iconbox &ndash;&gt;
-								<div class="iconbox iconbox__style-02">
-									<div class="iconbox__icon"><i class="ti-briefcase"></i></div>
-									<div>
-										<h2 class="iconbox__title"><a href="#">Investment Planning</a></h2>
-										<div class="iconbox__description">Maecenas lorem ex, euismod eget pulvinar non, facilisis ut leo. Quisque placerat purus in neque effi</div>
-									</div>
-								</div>&lt;!&ndash; End / iconbox &ndash;&gt;
-								
-							</div>
-						</div>
-						&lt;!&ndash;<div class="consult-form consult-form&#45;&#45;02 js-consult-form__content" style="background-image: url('/static/index/images/backgrounds/2.jpg');">
-							
-							&lt;!&ndash; form-01 &ndash;&gt;
-							<div class="form-01" style="padding:60px;">
-								<h2 class="form-01__title">We Here To Help You</h2>
-								<form class="form-01__form">
-									<div class="form__item">
-										<input type="text" name="name" placeholder="Your name"/>
-									</div>
-									<div class="form__item">
-										<input type="text" name="phone" placeholder="Your Email"/>
-									</div>
-									<div class="form__item">
-										<textarea rows="3" name="Your message" placeholder="Your message"></textarea>
-									</div>
-									<div class="form__button"><a class="btn btn-primary btn-w180" href="#">send message</a>
-									</div>
-								</form>
-							</div>&lt;!&ndash; End / form-01 &ndash;&gt;
-							
-						</div>&ndash;&gt;
-					</div>
-				</section>-->
-				<!-- End / Section -->
-				
-				
-				<!-- Section -->
-				<!--<section class="md-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6 col-lg-3 col-xl-3 ">
-								
-								&lt;!&ndash; pricing &ndash;&gt;
-								<div class="pricing">
-									<header>
-										<div class="pricing__icon"><i class="ti-support" aria-hidden="true"></i></div>
-										<h2 class="pricing__title">Start</h2>
-									</header>
-									<div>
-										<ul class="pricing__list">
-											<li>Charter Plane Crashes</li>
-											<li class="disable">Cruise Ship Accidents</li>
-											<li class="disable">Bicycle accidents</li>
-										</ul>
-										<div class="pricing__price"><span>$</span>62<span class="pricing__time">/ month</span>
-										</div><a class="btn btn-primary btn-outline btn-w180" href="#">choose plan</a>
-									</div>
-								</div>&lt;!&ndash; End / pricing &ndash;&gt;
-								
-							</div>
-							<div class="col-md-6 col-lg-3 col-xl-3 ">
-								
-								&lt;!&ndash; pricing &ndash;&gt;
-								<div class="pricing">
-									<header>
-										<div class="pricing__icon"><i class="ti-ruler-pencil" aria-hidden="true"></i></div>
-										<h2 class="pricing__title">business</h2>
-									</header>
-									<div>
-										<ul class="pricing__list">
-											<li>Charter Plane Crashes</li>
-											<li>Cruise Ship Accidents</li>
-											<li>Bicycle accidents</li>
-										</ul>
-										<div class="pricing__price"><span>$</span>71<span class="pricing__time">/ month</span>
-										</div><a class="btn btn-primary btn-outline btn-w180" href="#">choose plan</a>
-									</div>
-								</div>&lt;!&ndash; End / pricing &ndash;&gt;
-								
-							</div>
-							<div class="col-md-6 col-lg-3 col-xl-3 ">
-								
-								&lt;!&ndash; pricing &ndash;&gt;
-								<div class="pricing">
-									<header>
-										<div class="pricing__icon"><i class="ti-server" aria-hidden="true"></i></div>
-										<h2 class="pricing__title">corporate</h2>
-									</header>
-									<div>
-										<ul class="pricing__list">
-											<li>Charter Plane Crashes</li>
-											<li class="disable">Cruise Ship Accidents</li>
-											<li class="disable">Bicycle accidents</li>
-										</ul>
-										<div class="pricing__price"><span>$</span>81<span class="pricing__time">/ month</span>
-										</div><a class="btn btn-primary btn-outline btn-w180" href="#">choose plan</a>
-									</div>
-								</div>&lt;!&ndash; End / pricing &ndash;&gt;
-								
-							</div>
-							<div class="col-md-6 col-lg-3 col-xl-3 ">
-								
-								&lt;!&ndash; pricing &ndash;&gt;
-								<div class="pricing">
-									<header>
-										<div class="pricing__icon"><i class="ti-harddrives" aria-hidden="true"></i></div>
-										<h2 class="pricing__title">enterprise</h2>
-									</header>
-									<div>
-										<ul class="pricing__list">
-											<li>Charter Plane Crashes</li>
-											<li class="disable">Cruise Ship Accidents</li>
-											<li class="disable">Bicycle accidents</li>
-										</ul>
-										<div class="pricing__price"><span>$</span>71<span class="pricing__time">/ month</span>
-										</div><a class="btn btn-primary btn-outline btn-w180" href="#">choose plan</a>
-									</div>
-								</div>&lt;!&ndash; End / pricing &ndash;&gt;
-								
-							</div>
-						</div>
-					</div>
-				</section>-->
-				<!-- End / Section -->
+
 				
 			</div>
 			<!-- End / Content-->

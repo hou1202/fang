@@ -5,30 +5,27 @@
 			<div class="md-content">
 				<div class="consult-projectDetail">
 					
-					<!-- carousel__element owl-carousel -->
-					<!--<div class="carousel__element owl-carousel consult-projectDetail__slider" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"autoplay":true,"animateOut":"fadeOut","margin":0}'>-->
 					<div class=" owl-carousel consult-projectDetail__slider" style="display:block;">
-						<div><img src="/static/index/images/projects/detail-1.jpg" alt=""></div>
-						<!--<div><img src="/static/index/images/projects/detail-2.jpg" alt=""></div>
-						<div><img src="/static/index/images/projects/detail-3.jpg" alt=""></div>-->
+						<div class="detail-img"><img src="{$Case.img}" alt=""></div>
+
 					</div><!-- End / carousel__element owl-carousel -->
 					
 					<div class="container">
-						<div class="consult-projectDetail__main">
+						<div class="consult-projectDetail__main detail-container">
 							
 							<div class="row">
 								<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 detail-content">
 									<div class="consult-projectDetail__content">
 										<div class="row">
 											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
-												<h1>拼多多屡试不爽的裂变，你为什么玩不好？</h1>
+												<h1>{$Case.title}</h1>
 												<div class="row row-eq-height" style="margin-bottom:30px;">
 													<div class="col-lg-6 ">
 														
 														<!-- infobox -->
 														<div class="infobox">
-															<h2 class="infobox__title"><a href="#">Client</a></h2>
-															<div class="infobox__description">绿地国际花都二期项目</div>
+															<h2 class="infobox__title"><a>Client</a></h2>
+															<div class="infobox__description">{$Case.projects}</div>
 														</div><!-- End / infobox -->
 														
 													</div>
@@ -37,7 +34,7 @@
 														<!-- infobox -->
 														<div class="infobox">
 															<h2 class="infobox__title"><a href="#">date</a></h2>
-															<div class="infobox__description">2019-12-10</div>
+															<div class="infobox__description">{$Case.create_time|date="Y-m-d"}</div>
 														</div><!-- End / infobox -->
 														
 													</div>
@@ -46,7 +43,7 @@
 														<!-- infobox -->
 														<div class="infobox">
 															<h2 class="infobox__title"><a href="#">Team</a></h2>
-															<div class="infobox__description">朱信友</div>
+															<div class="infobox__description">{$Case.leader}</div>
 														</div><!-- End / infobox -->
 														
 													</div>
@@ -55,7 +52,7 @@
 														<!-- infobox -->
 														<div class="infobox">
 															<h2 class="infobox__title"><a href="#">Type</a></h2>
-															<div class="infobox__description">建筑智能化</div>
+															<div class="infobox__description">{$Case.classify}</div>
 														</div><!-- End / infobox -->
 														
 													</div>
@@ -65,24 +62,7 @@
 
 										<div class="row">
 											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
-												<p>11月是最繁忙的时间，你是否突然被前男/女友、小学同学、失散多年的朋友、忽然热络起来的同事们联系着？</p>
-												<p>不过放心，他们不是开始做微商、卖保险了，也不是结婚要份子钱，而是双11来来来啦！</p>
-												<img src="/static/index/images/projects/detail-2.jpg" alt="">
-												<p>双11之后，一直想写篇关于运营人的专访。无奈这期间，大家都忙着冲年底业绩，问谁都被拒绝，所以今天就转下笔锋聊下那些年电商带火的裂变套路。</p>
-												<p>2016年，拼多多这个电商界的怪物，让我们第一次见到了裂变真正的威力。自此，裂变已经成为考量运营人的一个重要标准之一。</p>
-												<p>当下的裂变主要围绕微信生态，做裂变的人群有个很高级的词称其为“流量池思维”，它强调的是如何让流量更有效地转化，用一批已有用户找到更多的新用户。而要获得成本最低的流量，途径也很简单，那就是“裂变”。</p>
-												<p>裂变的实质就是：用最低的成本、最巧的手法，攫取微信最后一点点流量红利，在人口红利消失的时代薅羊毛。</p>
-												<p>裂变！裂变！裂变到底有多强大？</p>
-												<img src="/static/index/images/projects/detail-1.jpg" alt="">
-												<p>因为裂变，拼多多3年就获得了3亿的用户，市值接近400亿美元！</p>
-												<p>趣头条不到24个月就收获了1.8亿用户，日活高达1000万+！</p>
-												<p>薄荷阅读发起100天读完3本英文原版书活动，2个月营收就达到5000万！</p>
-												<p>网易刷屏课程把朋友圈染成红彤彤一片，上线12小时吸引13万人报名付费，最终学习人数突破21万！</p>
-												<p>连咖啡在小程序中上线“1元新品拼团”功能，1天斩获500万PV，3小时就把一个月的原材料库存消耗完毕，只得临时下线！</p>
-												<p>数据说明一切，裂变正在成为新一代运营的核心竞争力。</p>
-												<p>于是乎，身为运营人的你是否也开始有样学样，或拼团裂变，或助力裂变，或邀请裂变，或分享裂变，万变不离其宗，基本都属于这四类玩法。</p>
-												<img src="/static/index/images/projects/detail-3.jpg" alt="">
-												<p>但是，为什么你做都没效果？</p>
+												{:html_entity_decode($Case.content)}
 
 											</div>
 										</div>
@@ -94,54 +74,6 @@
 					</div>
 				</div>
 				<!-- Related Posts-->
-				
-				<!-- Section -->
-				<!--<section class="md-section">
-					<div class="container">
-						
-						&lt;!&ndash; title-01 &ndash;&gt;
-						<div class="title-01">
-							<h2 class="title-01__title">Other Projects</h2>
-						</div>&lt;!&ndash; End / title-01 &ndash;&gt;
-						
-						
-						&lt;!&ndash; carousel__element owl-carousel &ndash;&gt;
-						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
-							
-							&lt;!&ndash; post-02 &ndash;&gt;
-							<div class="post-02">
-								<div class="post-02__media"><a href="#"><img src="/static/index/images/projects/9.jpg" alt=""/></a></div>
-								<div class="post-02__body">
-									<h2 class="post-02__title"><a href="#">SSL Certificates</a></h2>
-									<div class="post-02__department">Business Consulting</div>
-								</div>
-							</div>&lt;!&ndash; End / post-02 &ndash;&gt;
-							
-							
-							&lt;!&ndash; post-02 &ndash;&gt;
-							<div class="post-02">
-								<div class="post-02__media"><a href="#"><img src="/static/index/images/projects/4.jpg" alt=""/></a></div>
-								<div class="post-02__body">
-									<h2 class="post-02__title"><a href="#">Easy to Customize</a></h2>
-									<div class="post-02__department">Business Consulting</div>
-								</div>
-							</div>&lt;!&ndash; End / post-02 &ndash;&gt;
-							
-							
-							&lt;!&ndash; post-02 &ndash;&gt;
-							<div class="post-02">
-								<div class="post-02__media"><a href="#"><img src="/static/index/images/projects/5.jpg" alt=""/></a></div>
-								<div class="post-02__body">
-									<h2 class="post-02__title"><a href="#">Dark &amp; Light Versions</a></h2>
-									<div class="post-02__department">Business Consulting</div>
-								</div>
-							</div>&lt;!&ndash; End / post-02 &ndash;&gt;
-							
-						</div>&lt;!&ndash; End / carousel__element owl-carousel &ndash;&gt;
-						
-					</div>
-				</section>-->
-				<!-- End / Section -->
 				
 			</div>
 			<!-- End / Content-->

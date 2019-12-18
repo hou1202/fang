@@ -4,16 +4,10 @@
 			<!-- Content-->
 			<div class="md-content">
 				<div class="consult-postDetail">
-					<div class="image-full"><img src="/static/index/images/blogs/detail/1.jpg" alt=""></div>
+					<div class="image-full"><img src="{$News.img}" alt=""></div>
 					<div class="consult-postDetail"></div>
 					<div class="container detail-container">
 						<div class="consult-postDetail__main">
-							
-							<!-- social-01 -->
-							<!--<div class="social-01 social-01__style-02">
-								<nav class="social-01__navSocial"><a class="social-01__item" href="#"><i class="fa fa-facebook"></i></a><a class="social-01__item" href="#"><i class="fa fa-skype"></i></a><a class="social-01__item" href="#"><i class="fa fa-twitter"></i></a><a class="social-01__item" href="#"><i class="fa fa-instagram"></i></a>
-								</nav>
-							</div>--><!-- End / social-01 -->
 							
 							<div class="row">
 								<!--<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">-->
@@ -21,48 +15,23 @@
 									<div class="consult-postDetail__content">
 										<div class="row">
 											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
-												<h1>深度揭秘用户数据埋点采集技术 | 您的行踪已暴露</h1>
+												<h1>{$News.title}</h1>
 												<ul class="consult-postDetail__meta">
-													<li><i class="fa fa-user" aria-hidden="true"></i> Admin</li>
-													<li><i class="fa fa-tags" aria-hidden="true"></i>行业动态</li>
+													<li><i class="fa fa-user" aria-hidden="true"></i> {$News.author}</li>
+													<li><i class="fa fa-tags" aria-hidden="true"></i>{$News.labels}</li>
 													<!--<li><i class="fa fa-comments-o" aria-hidden="true"></i>数据采集</li>-->
-													<li><i class="fa fa-calendar-o" aria-hidden="true"></i>2019-12-10</li>
+													<li><i class="fa fa-calendar-o" aria-hidden="true"></i>{$News.create_time|date="Y-m-d"}</li>
 												</ul>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
-												<p>No.1 神秘的银行贷款额度</p>
-												<p>前段时间，我经常收到招商银行信贷部的电话，本来我都是直接挂掉的，但是有一天打了好几次，我终于忍不了了，接起来问：“能不能不要再给我打了？说了不需要不需要！“</p>
-												<p>对方的回答却让我有些惊讶，甚至有被羞辱的感觉:：“真的不需要吗？真的不需要吗？“。</p>
-												<p>我再次强调：“真的不需要！“</p>
-												<p>然后对方说：“我这里看到你最近在招行 APP 里浏览了e招贷页面，猜想您可能有资金方面的需要，我们现在有xxx优惠，最高给您开到xx万，都是随借随还的…… “</p>
-												<p>我：“……”</p>
-												<img src="/static/index/images/blogs/detail/2.jpg" alt="">
-												<p>No.2 数据统计差异的迷思</p>
-												<p>有一次，一个活动做完之后，运营同学拿着两张数据报表来问我：“为什么我们的数据跟外部的数据有这么大的差异呢？”。</p>
-												<p>我反问：“你确定两边的数据统计口径一致吗？”</p>
-												<p>运营同学答：“一致呀，都是用户访问量呀！”</p>
-												<p>我：“我的意思是，你的访问量是按照什么计算的？怎样才算是一个访问呢？即使统计口径一致，埋点和上报方法也有区别… blabla”</p>
-												<p>说完这些我猛然发现，这不是“人话“啊，怎么样才能把这些转换成谁都能听懂的“人话“呢？我陷入了沉思。</p>
-												<p>那么，通过这两个小故事，我们得到了哪些信息呢？</p>
-												<p>首先，我们在互联网上的一切动作，都可能有人在观察、记录、分析、预测。其次，大部分人并不知道，我们在上网时的信息和行为是如何暴露的，即使知道概念，也未必清楚细节。因为细节是魔鬼，而且说出来也很难被理解。</p>
-												<p>因此，笔者认为有必要对基本的用户数据埋点采集原理进行一些讲解，让大家了解我们在互联网上，到底会暴露哪些数据，这些数据会对我们产生怎样的影响。</p>
-												<img src="/static/index/images/blogs/detail/4.jpg" alt="">
-												<p>1. 网站或应用能采集哪些用户行为</p>
-												<p>若要了解我们会暴露哪些数据，首先要知道我们的“敌人”有哪些能力。我将其分为四部分来讲，其中数据权限也算是软件能力的一种，差别在于需要用户的授权才能拿到。许多硬件能力也都是要用户授权使用的，只是有时候授权的提示过于复杂，容易混淆视听，不小心授权了你完全不理解的东西。</p>
-												<img src="/static/index/images/blogs/detail/3.jpg" alt="">
-												<p>1.1 硬件能力</p>
-												<p>硬件能力包括设备能做的一切事情，这里的设备，可以是个人电脑、服务器、智能手机，以及其他智能设备等。那么，以个人电脑为例，它可以联网、办公、打游戏等等。用户的所有行为，都可能被记录，并通过网络发送到远程的某台服务器进行分析，这个大家是知道的。</p>
-												<p>如果是智能设备，能做的就更多了。比如摄像头、麦克风、陀螺仪、GPS、NFC 、蓝牙、WiFi 等等，都是硬件提供的能力。有了硬件基础，软件才能通过驱动程序获取这些硬件提供的信息，进入下一步的处理逻辑。</p>
-												<p>常见的智能设备有：手机、笔记本、iPad、ATM、自动售货机、快递柜、智能家居、智能水杯、智能手环，智能汽车等等。那么你可以思考一下，这些设备平时都具有哪些能力，可能采集你的什么信息？</p>
+												{:html_entity_decode($News.content)}
 											</div>
 										</div>
 
-										<!--<blockquote>
-											<p>有些时候，我们不仅希望知道用户在某个页面是怎么操作的，还希望知道用户在整个网站或应用中的操作流程是怎样的，具体从哪个界面跳到了哪个界面，最后在哪里转化，在哪里离开的</p>
-										</blockquote>-->
+
 
 									</div>
 								</div>
@@ -71,69 +40,6 @@
 					</div>
 				</div>
 				<!-- Related Posts-->
-				
-				<!-- Section -->
-				<!--<section class="md-section">
-					<div class="container">
-						
-						&lt;!&ndash; title-01 &ndash;&gt;
-						<div class="title-01">
-							<h2 class="title-01__title">Related Posts</h2>
-						</div>&lt;!&ndash; End / title-01 &ndash;&gt;
-						
-						
-						&lt;!&ndash; carousel__element owl-carousel &ndash;&gt;
-						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
-							
-							&lt;!&ndash;  &ndash;&gt;
-							<div>
-								<div class="post-01__media"><a href="#"><img src="/static/index/images/blogs/related-1.jpg" alt=""/></a>
-								</div>
-								<div>
-									<ul class="post-01__categories">
-										<li><a href="#">Business</a></li>
-									</ul>
-									<h2 class="post-01__title"><a href="#">How to Create and Manage SVG Sprites</a></h2>
-									<div class="post-01__time">Aug 14, 2017</div>
-									<div class="post-01__note">by Raymond Mendoza</div>
-								</div>
-							</div>&lt;!&ndash; End /  &ndash;&gt;
-							
-							
-							&lt;!&ndash;  &ndash;&gt;
-							<div>
-								<div class="post-01__media"><a href="#"><img src="/static/index/images/blogs/related-2.jpg" alt=""/></a>
-								</div>
-								<div>
-									<ul class="post-01__categories">
-										<li><a href="#">Business</a></li>
-									</ul>
-									<h2 class="post-01__title"><a href="#">Best National Locations</a></h2>
-									<div class="post-01__time">Aug 14, 2017</div>
-									<div class="post-01__note">by Alice Brooks</div>
-								</div>
-							</div>&lt;!&ndash; End /  &ndash;&gt;
-							
-							
-							&lt;!&ndash;  &ndash;&gt;
-							<div>
-								<div class="post-01__media"><a href="#"><img src="/static/index/images/blogs/related-3.jpg" alt=""/></a>
-								</div>
-								<div>
-									<ul class="post-01__categories">
-										<li><a href="#">Business Law</a></li>
-									</ul>
-									<h2 class="post-01__title"><a href="#">Is UX Really That Important?</a></h2>
-									<div class="post-01__time">Aug 14, 2017</div>
-									<div class="post-01__note">by Jose Snyder</div>
-								</div>
-							</div>&lt;!&ndash; End /  &ndash;&gt;
-							
-						</div>&lt;!&ndash; End / carousel__element owl-carousel &ndash;&gt;
-						
-					</div>
-				</section>-->
-				<!-- End / Section -->
 				
 			</div>
 			<!-- End / Content-->
