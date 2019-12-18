@@ -1,6 +1,30 @@
 <!--引入头部文件-->
 {include file="default/header" title="最新动态" keywords="合肥方科信息技术有限公司" active="blog"}
-			
+	{load href="/static/index/layui/css/layui.css"}
+<style>
+	.layui-laypage-em {
+		background:#fff !important;
+		border-bottom:1px solid #f39c12;
+
+	}
+	.layui-laypage .layui-laypage-curr em{
+		color:#f39c12;
+		font-weight:600;
+		font-size:16px;
+	}
+	.layui-laypage a,.layui-laypage .layui-laypage-spr {
+		border:none;
+		color:#c2c2c2;
+		font-weight:600;
+		font-size:16px;
+	}
+	.layui-laypage a:hover{
+		color:#f39c12;
+	}
+	.md-content {
+		padding-top:100px;
+	}
+</style>
 			<!-- Content-->
 			<div class="md-content">
 				
@@ -22,35 +46,16 @@
 						
 						<!-- layout-blog sidebar-left -->
 						<div class="layout-blog sidebar-left">
-							<div class="layout-blog__content">
+							<div class="layout-blog__content" id="layui_content">
 
 								<!--  -->
-								{volist name="News" id="n"}
-								<div class="post-01__style-02 md-text-center">
-									<div class="post-01__media">
-										<a href="/blog-detail/{$n.id}"><img src="{$n.thumbnail}" alt=""/></a>
-									</div>
-									<div>
-										<ul class="post-01__categories">
-											<li><a>{$n.create_time|date="Y-m-d"}</a></li>
-										</ul>
-										<h2 class="post-01__title"><a href="/blog-detail/{$n.id}">{$n.title}</a></h2>
-										<div class="post-01__time">{$n.info}</div>
-										<!--<div class="post-01__note">by Alice Brooks</div>-->
-									</div>
-								</div>
-								{/volist}
+
 								<!-- End /  -->
 
 							</div>
 
 							<!-- pagination -->
-							<ul class="pagination">
-								<a class="pagination__item" href="#">1</a>
-								<a class="pagination__item" href="#">2</a>
-								<a class="pagination__item" href="#">3</a>
-								<span class="pagination__item active">4</span>
-							</ul>
+							<div id="layui_page" style="text-align: center;margin: 50px 0 70px;width:100%;"></div>
 							<!-- End / pagination -->
 
 						</div><!-- End / layout-blog sidebar-left -->
@@ -61,6 +66,70 @@
 				
 			</div>
 			<!-- End / Content-->
-
+{load href="/static/index/layui/layui.js"}
 <!--引入加载footer文件-->
 {include file="default/footer" /}
+
+<script>
+
+    layui.use(['laypage', 'layer'], function() {
+        var $ = layui.jquery,
+            laypage = layui.laypage,
+            layer = layui.layer;
+        //将一段数组分页展示
+        var data;
+        var count = "{$Count}";
+        var pageLimit = 10;
+        function getData(page){
+
+            $.ajax({
+                type: "post",
+                async: false,
+                url: "/blog/data",
+                data: {'page':page,'limit':pageLimit},
+                success: function (res) {
+                    data = res.data;
+                }
+            });
+        }
+        getData(0);
+
+        //调用分页
+        laypage.render({
+            elem: 'layui_page'
+            //, count: data.length
+			,groups:3
+			,prev:false
+            ,next:false
+            , count: count
+            , limit: pageLimit
+            , jump: function (obj,first) {
+                //首次不执行
+                if(!first){
+                    getData(obj.curr-1);
+                }
+                document.getElementById('layui_content').innerHTML = function () {
+                    var arr = [];
+                    //, thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
+                    layui.each(data, function (index, item) {
+                        arr.push('<div class="post-01__style-02 md-text-center">\n' +
+                            '        <div class="post-01__media">\n' +
+                            '            <a href="/blog-detail/'+item.id+'"><img src="'+item.thumbnail+'" alt=""/></a>\n' +
+                            '        </div>\n' +
+                            '        <div>\n' +
+                            '            <ul class="post-01__categories">\n' +
+                            '            	<li><a>'+item.create_time+'</a></li>\n' +
+                            '            </ul>' +
+                            '            <h2 class="post-01__title"><a href="/blog-detail/'+item.id+'">'+item.title+'</a></h2>' +
+                            '            <div class="post-01__time">'+item.info+'</div>\n' +
+                            '        </div>\n' +
+                            '    </div>');
+                    });
+                    return arr.join('');
+                }();
+            }
+        });
+    });
+
+
+</script>

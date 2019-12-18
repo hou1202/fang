@@ -98,7 +98,11 @@
 .detail-img img{
     width:100% !important;
 }
-
+@media (min-width: 1200px){
+    .page-title__title{
+        font-size:48px;
+    }
+}
 .tip{
     display:inline-block;
     padding:15px 35px;

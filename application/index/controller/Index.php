@@ -58,6 +58,9 @@ class Index extends BaseController
         $res_lab = Params::where('type',8)->select();
         $res_img = Banner::where('type',5)->column('img');
         $this->assign('About',['com'=>$res_com,'lab'=>$res_lab,'img'=>$res_img]);
+        //反馈信息
+        $res_tick = Banner::where('type',6)->value('img');
+        $this->assign('Tick',$res_tick);
         //评论
         $res_discus = Params::where('type',3)->select();
         $this->assign('Discus',$res_discus);
@@ -131,10 +134,20 @@ class Index extends BaseController
     public function blog()
     {
         $res_ban = Banner::where('type',4)->find();
-        $res_news = News::field('id,title,info,thumbnail,create_time')->order('id desc')->select();
+        //$res_news = News::field('id,title,info,thumbnail,create_time')->order('id desc')->select();
         $this->assign('Banner',$res_ban);
-        $this->assign('News',$res_news);
+        $this->assign('Count',News::count());
         return view('/blog');
+    }
+
+    public function getBlogData(Request $request){
+        $data = $request -> param();
+        $res = News::limit($data['page'],$data['limit'])
+            ->select()
+            ->toArray();
+
+        //return $this->kitJson($list,$count);
+        return $this->successJson('获取成功','',$res);
     }
 
     public function blogDetail($id)

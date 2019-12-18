@@ -38,6 +38,7 @@ Route::get('/blog-detail/:id','index/index/blogDetail');
 Route::get('/contact','index/index/contact');
 Route::post('/tick','index/index/tick');
 Route::get('/errors','index/index/errors');
+Route::post('/blog/data','index/index/getBlogData');
 
 
 
