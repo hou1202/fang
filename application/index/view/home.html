@@ -9,9 +9,9 @@
 				<div class="slider">
 					
 					<!-- carousel__element owl-carousel -->
-					<div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": false, "autoplayTimeout": 4000, "animateOut":"fadeOut"}'>
+					<div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": true, "autoplayTimeout": 4000, "animateOut":"fadeOut"}'>
 						{volist name="Banner" id="b"}
-						<div class="slider__item" style="background: url({$b.img}) no-repeat;background-size:100%;">
+						<div class="slider__item" style="background: url({$b.img}) no-repeat center center;background-size:cover;">
 							<div class="md-tb">
 								<div class="md-tb__cell">
 									<div class="slider__content">
