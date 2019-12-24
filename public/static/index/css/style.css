@@ -45,15 +45,15 @@
 
 .banner-blog {
     background:url(/static/index/images/banner-blog.jpg) no-repeat center center;
-    background-size:100%;
+    background-size:cover;
 }
 .banner-project {
     background:url(/static/index/images/banner-project.jpg) no-repeat center center;
-    background-size:100%;
+    background-size:cover;
 }
 .banner-service {
     background:url(/static/index/images/banner-service.jpg) no-repeat center center;
-    background-size:100%;
+    background-size:cover;
 }
 .detail-content{
     margin:0 auto !important;
@@ -121,4 +121,8 @@
 
     z-index: 999;
 
+}
+
+.project-section{
+    padding-top:10px ;
 }

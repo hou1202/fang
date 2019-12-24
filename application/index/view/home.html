@@ -64,7 +64,7 @@
 								
 								<!-- iconbox -->
 								<div class="iconbox">
-									<div class="iconbox__icon"><i class="ti-stack-overflow"></i></div>
+									<div class="iconbox__icon"><i class="ti-world"></i></div>
 									<div>
 										<h2 class="iconbox__title"><a href="service.html">{$Services.title}</a></h2>
 										<div class="iconbox__description">
@@ -107,7 +107,7 @@
 									<h6 class="title-01__subTitle">about</h6>
 									<h2 class="title-01__title">{$About.com.title}</h2>
 									<div>
-										{$About.com.content}
+                                        {:html_entity_decode($About.com.content)}
 									</div>
 								</div><!-- End / title-01 -->
 								
